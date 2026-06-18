@@ -106,19 +106,6 @@ export default function HomePage() {
 
         {/* Ambient orbs */}
         <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-          {/* Large orange right-side orb */}
-          <div
-            className="absolute -right-40 top-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-[130px] opacity-18"
-            style={{ background: "radial-gradient(circle, #E85D04 0%, #FF802B 40%, transparent 70%)" }}
-          />
-          {/* Smaller left orb */}
-          <div
-            className="absolute -left-20 bottom-0 w-[450px] h-[450px] rounded-full blur-[110px] opacity-10"
-            style={{ background: "radial-gradient(circle, #FF802B 0%, transparent 70%)" }}
-          />
-          {/* Subtle ring decorators */}
-          <div className="absolute right-20 top-1/2 -translate-y-1/2 w-[560px] h-[560px] rounded-full border border-[#E85D04]/10 animate-spin-slow" style={{ animationDuration: "60s" }} />
-          <div className="absolute right-36 top-1/2 -translate-y-1/2 w-[380px] h-[380px] rounded-full border border-[#E85D04]/07" />
           {/* Floating dots */}
           <div className="absolute top-24 left-1/3 w-3 h-3 rounded-full bg-[#E85D04] opacity-50 animate-float" />
           <div className="absolute bottom-32 left-1/4 w-2 h-2 rounded-full bg-[#FF802B] opacity-40 animate-float-slow" />
