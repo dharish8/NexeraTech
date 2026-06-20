@@ -78,17 +78,17 @@ export default function CaseStudiesClient() {
                       <div>
                         <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: cs.color }}>Case Study {idx + 1} of 5</p>
                         <p className="text-4xl mb-3">{cs.flag}</p>
-                        <p className="font-bold text-white text-lg">{cs.client}</p>
+                        <p className="font-bold text-[#0A1628] text-lg">{cs.client}</p>
                         <p className="text-sm text-gray-500">{cs.country}</p>
                       </div>
                       <div className="mt-6 space-y-2">
                         <div>
                           <p className="text-xs text-gray-400">Duration</p>
-                          <p className="text-sm font-medium text-white">{cs.duration}</p>
+                          <p className="text-sm font-medium text-[#0A1628]">{cs.duration}</p>
                         </div>
                         <div>
                           <p className="text-xs text-gray-400">Team</p>
-                          <p className="text-sm font-medium text-white">{cs.teamSize}</p>
+                          <p className="text-sm font-medium text-[#0A1628]">{cs.teamSize}</p>
                         </div>
                       </div>
                     </div>
@@ -113,7 +113,7 @@ export default function CaseStudiesClient() {
                         ))}
                       </div>
 
-                      <h2 className="text-2xl font-bold text-white mb-3 group-hover:text-[#E85D04] transition-colors">{cs.headline}</h2>
+                      <h2 className="text-2xl font-bold text-[#0A1628] mb-3 group-hover:text-[#E85D04] transition-colors">{cs.headline}</h2>
                       <p className="text-gray-500 mb-5 leading-relaxed">{cs.subheadline}</p>
 
                       {/* Quote preview */}

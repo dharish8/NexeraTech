@@ -3,6 +3,7 @@ import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import FinalCTAWrapper from "@/components/layout/FinalCTAWrapper";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -58,6 +59,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-white text-[#0F1117]">
         <Navbar />
         <main className="flex-1">{children}</main>
+        <FinalCTAWrapper />
         <Footer />
       </body>
     </html>

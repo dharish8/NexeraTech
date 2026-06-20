@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import {
   ArrowRight,
@@ -14,6 +15,8 @@ import {
   CheckCircle,
   Star,
   ChevronRight,
+  ChevronDown,
+  ChevronUp,
   Linkedin,
   Twitter,
   Facebook,
@@ -85,6 +88,8 @@ const displayFont = { fontFamily: "var(--font-display, 'Plus Jakarta Sans', sans
 export default function HomePage() {
   const featuredServices = services.slice(0, 6);
   const featuredCases = caseStudies.slice(0, 3);
+  const [showAllTestimonials, setShowAllTestimonials] = useState(false);
+  const visibleTestimonials = showAllTestimonials ? testimonials : testimonials.slice(0, 3);
 
   return (
     <div className="overflow-hidden bg-white text-white">
@@ -283,54 +288,66 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-            {/* Left Column — Composite Cards */}
+            {/* Left Column — Composite Cards with real images */}
             <div className="relative">
               <div className="grid grid-cols-2 gap-4">
-                {/* Tall block */}
-                <div className="h-[380px] rounded-3xl bg-gradient-to-br from-[#0A1628] via-[#0F1E35] to-[#132238] border border-[#E85D04]/18 p-7 flex flex-col justify-between shadow-[0_24px_48px_rgba(10,22,40,0.25)] row-span-2 relative overflow-hidden group animate-float-slow">
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 opacity-08"
-                    style={{ backgroundImage: "radial-gradient(circle, rgba(232,93,4,0.28) 1px, transparent 1px)", backgroundSize: "20px 20px" }}
+                {/* Tall block — Offshore IT Delivery */}
+                <div className="h-[380px] rounded-3xl border border-[#E85D04]/18 shadow-[0_24px_48px_rgba(10,22,40,0.25)] row-span-2 relative overflow-hidden group animate-float-slow">
+                  <Image
+                    src="/Why-Choose-Us/Offshore-IT-Delivery.webp"
+                    alt="Offshore IT Delivery"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
-                  {/* Gradient border glow top */}
-                  <div className="absolute inset-x-0 top-0 h-[2px]" style={{ background: "linear-gradient(90deg, transparent, rgba(232,93,4,0.7), transparent)", opacity: 0, transition: "opacity 0.3s" }} />
+                  {/* Dark overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/60 to-transparent" />
                   <span className="absolute inset-x-0 top-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: "linear-gradient(90deg, transparent, #E85D04, transparent)" }} />
-                  <div className="relative z-10">
+                  <div className="absolute bottom-0 left-0 right-0 p-7 z-10">
                     <div className="w-12 h-12 rounded-2xl bg-[#E85D04]/15 border border-[#E85D04]/25 flex items-center justify-center text-white mb-5 group-hover:bg-[#E85D04]/25 transition-colors">
                       <span className="text-xl">💼</span>
                     </div>
                     <h4 className="text-white font-bold text-lg leading-tight mb-3" style={displayFont}>Offshore IT Delivery</h4>
-                    <p className="text-sm text-white/45 leading-relaxed">Scalable engineering support out of our Hyderabad delivery center. Aligned to US, UK & India time zones.</p>
-                  </div>
-                  {/* Bottom badge */}
-                  <div className="relative z-10 flex items-center gap-2 p-3 rounded-xl" style={{ background: "rgba(232,93,4,0.10)", border: "1px solid rgba(232,93,4,0.20)" }}>
-                    <div className="w-2 h-2 rounded-full bg-[#E85D04] animate-flicker" />
-                    <span className="text-[10px] text-[#E85D04] font-bold uppercase tracking-wider">25+ Active Engineers</span>
+                    <p className="text-sm text-white/70 leading-relaxed">Scalable engineering support out of our Hyderabad delivery center. Aligned to US, UK & India time zones.</p>
+                    {/* Bottom badge */}
+                    <div className="flex items-center gap-2 p-3 rounded-xl mt-4" style={{ background: "rgba(232,93,4,0.15)", border: "1px solid rgba(232,93,4,0.30)" }}>
+                      <div className="w-2 h-2 rounded-full bg-[#E85D04] animate-flicker" />
+                      <span className="text-[10px] text-[#E85D04] font-bold uppercase tracking-wider">25+ Active Engineers</span>
+                    </div>
                   </div>
                 </div>
 
                 {/* AI block */}
-                <div className="h-[178px] rounded-3xl bg-[#FFF4EC] border border-[#E85D04]/18 p-6 flex flex-col justify-between shadow-sm relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300">
+                <div className="h-[178px] rounded-3xl border border-[#E85D04]/18 shadow-sm relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300">
+                  <Image
+                    src="/Why-Choose-Us/AI-ML-labs.webp"
+                    alt="AI ML Labs"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/90 via-[#0A1628]/40 to-transparent" />
                   <span className="absolute inset-x-0 top-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: "linear-gradient(90deg, transparent, #E85D04, transparent)" }} />
-                  <div className="w-10 h-10 rounded-xl bg-[#E85D04]/12 border border-[#E85D04]/20 flex items-center justify-center">
-                    <span className="text-lg">🧠</span>
-                  </div>
-                  <div>
+                  <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
                     <h4 className="text-white font-bold text-sm leading-tight mb-1" style={displayFont}>AI/ML Labs</h4>
-                    <p className="text-[11px] text-white/50">LLM, RAG integration, custom models.</p>
+                    <p className="text-[11px] text-white/70">LLM, RAG integration, custom models.</p>
                   </div>
                 </div>
 
                 {/* IAM block */}
-                <div className="h-[178px] rounded-3xl bg-[#0A1628] border border-[#E85D04]/22 p-6 flex flex-col justify-between shadow-lg relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300">
+                <div className="h-[178px] rounded-3xl border border-[#E85D04]/22 shadow-lg relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300">
+                  <Image
+                    src="/Why-Choose-Us/IAM-Security.webp"
+                    alt="IAM Security"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/90 via-[#0A1628]/40 to-transparent" />
                   <span className="absolute inset-x-0 top-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: "linear-gradient(90deg, transparent, #E85D04, transparent)" }} />
-                  <div className="w-10 h-10 rounded-xl bg-white/08 border border-white/12 flex items-center justify-center">
-                    <span className="text-lg">🔒</span>
-                  </div>
-                  <div>
+                  <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
                     <h4 className="text-white font-bold text-sm leading-tight mb-1" style={displayFont}>IAM & Security</h4>
-                    <p className="text-[11px] text-white/45">Zero-Trust systems setup.</p>
+                    <p className="text-[11px] text-white/70">Zero-Trust systems setup.</p>
                   </div>
                 </div>
               </div>
@@ -430,10 +447,10 @@ export default function HomePage() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {[
-              { title: "Offshore IT Services", desc: "Strategic engineering squads headquartered out of Hyderabad to augment global capacity.", slug: "offshore-it-services", icon: Globe, gradient: "from-[#0A1628] to-[#132238]" },
-              { title: "Software Development", desc: "End-to-end custom application development, architecture consulting, and product builds.", slug: "software-development", icon: Code2, gradient: "from-[#E85D04] to-[#FF802B]" },
-              { title: "AI / ML Integration", desc: "Implementing custom machine learning pipelines, LLM fine-tuning, and document AI.", slug: "ai-ml-services", icon: Brain, gradient: "from-[#1D314D] to-[#132238]" },
-              { title: "IAM & Cybersecurity", desc: "Okta integration, directory configuration, Zero Trust policies, and compliance implementation.", slug: "iam-cybersecurity", icon: Shield, gradient: "from-[#0A1628] to-[#E85D04]" },
+              { title: "Offshore IT Services", desc: "Strategic engineering squads headquartered out of Hyderabad to augment global capacity.", slug: "offshore-it-services", icon: Globe, image: "/Our-Specialty/Offshore-IT-Delivery.webp" },
+              { title: "Software Development", desc: "End-to-end custom application development, architecture consulting, and product builds.", slug: "software-development", icon: Code2, image: "/Our-Specialty/Software-Development.webp" },
+              { title: "AI / ML Integration", desc: "Implementing custom machine learning pipelines, LLM fine-tuning, and document AI.", slug: "ai-ml-services", icon: Brain, image: "/Our-Specialty/AI-ML-Integration.webp" },
+              { title: "IAM & Cybersecurity", desc: "Okta integration, directory configuration, Zero Trust policies, and compliance implementation.", slug: "iam-cybersecurity", icon: Shield, image: "/Our-Specialty/IAM-Cybersecurity.webp" },
             ].map((spec) => {
               const Icon = spec.icon;
               return (
@@ -447,10 +464,16 @@ export default function HomePage() {
                       className="absolute inset-x-0 top-0 h-[3px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
                       style={{ background: "linear-gradient(90deg, transparent, #E85D04, transparent)" }}
                     />
-                    {/* Gradient banner */}
-                    <div className={`h-36 bg-gradient-to-br ${spec.gradient} relative overflow-hidden flex items-center justify-center flex-shrink-0`}>
-                      <div aria-hidden className="absolute inset-0 opacity-12" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.35) 1px, transparent 1px)", backgroundSize: "18px 18px" }} />
-                      <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, rgba(255,255,255,0.06) 0%, transparent 70%)" }} />
+                    {/* Image banner */}
+                    <div className="h-36 relative overflow-hidden flex-shrink-0">
+                      <Image
+                        src={spec.image}
+                        alt={spec.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 25vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                     </div>
                     {/* Content */}
                     <div className="p-6 pt-0 relative flex-1 flex flex-col">
@@ -591,29 +614,36 @@ export default function HomePage() {
       <section
         className="relative section-py overflow-hidden"
         style={{
-          backgroundColor: "#ffffff",
-          backgroundImage: "radial-gradient(circle, rgba(232,93,4,0.05) 1.5px, transparent 1.5px)",
-          backgroundSize: "28px 28px",
+          backgroundColor: "#0A1628",
         }}
       >
+        {/* Dot grid */}
+        <div aria-hidden className="pointer-events-none absolute inset-0" style={{ backgroundImage: "radial-gradient(circle, rgba(232,93,4,0.12) 1.5px, transparent 1.5px)", backgroundSize: "28px 28px" }} />
+        {/* Center glow */}
+        <div aria-hidden className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] blur-[100px] opacity-20" style={{ background: "rgba(232,93,4,0.35)" }} />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-            className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-12"
+            className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-14"
           >
             <div>
-              <span className="eyebrow-tag mb-5 inline-flex">
+              <span className="eyebrow-tag eyebrow-tag-dark mb-5 inline-flex">
                 <span className="dot" />
                 Industries We Serve
               </span>
               <h2
-                className="text-4xl font-black text-[#0A1628] leading-tight tracking-tight mt-4"
+                className="text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight mt-4"
                 style={displayFont}
               >
-                Built for Your Industry
+                Built for Your{" "}
+                <span className="gradient-text">Industry</span>
               </h2>
+              <p className="text-white/45 mt-3 text-base max-w-xl">
+                Sector-specific expertise across 6 regulated, competitive, and complex markets.
+              </p>
             </div>
-            <Link href="/industries" className="flex items-center gap-2 text-[#E85D04] font-bold text-sm hover:gap-3 transition-all duration-200 whitespace-nowrap">
+            <Link href="/industries" className="flex items-center gap-2 px-5 py-2.5 rounded-full text-[#E85D04] font-bold text-sm border border-[#E85D04]/30 hover:bg-[#E85D04]/10 hover:gap-3 transition-all duration-200 whitespace-nowrap flex-shrink-0">
               All industries <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>
@@ -623,22 +653,44 @@ export default function HomePage() {
             className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
           >
             {[
-              { name: "BFSI / Fintech", icon: "🏦", desc: "Compliance-first engineering", href: "/industries" },
-              { name: "Healthcare", icon: "🏥", desc: "HIPAA-ready systems", href: "/industries" },
-              { name: "Technology / SaaS", icon: "💻", desc: "Product engineering", href: "/industries" },
-              { name: "Retail", icon: "🛒", desc: "Commerce platforms", href: "/industries" },
-              { name: "Legal", icon: "⚖️", desc: "Document AI & automation", href: "/industries" },
-              { name: "Manufacturing", icon: "🏭", desc: "ERP integration & ops", href: "/industries" },
+              { name: "BFSI / Fintech", icon: "🏦", desc: "Compliance-first engineering", stat: "40+ clients", image: "/industries/BFSI-Fintech.webp" },
+              { name: "Healthcare", icon: "🏥", desc: "HIPAA-ready systems", stat: "HIPAA aligned", image: "/industries/Healthcare.webp" },
+              { name: "Technology / SaaS", icon: "💻", desc: "Product engineering", stat: "AI-ready", image: "/industries/Technology-SaaS.webp" },
+              { name: "Retail", icon: "🛒", desc: "Commerce platforms", stat: "Cloud-native", image: "/industries/Retail-E-Commerce.webp" },
+              { name: "Legal", icon: "⚖️", desc: "Document AI & automation", stat: "AI-powered", image: "/industries/Legal.webp" },
+              { name: "Manufacturing", icon: "🏭", desc: "ERP integration & ops", stat: "ERP experts", image: "/industries/Manufacturing.webp" },
             ].map((ind, i) => (
               <motion.div key={i} variants={fadeUp}>
                 <Link
-                  href={ind.href}
-                  className="group flex flex-col items-center text-center p-5 rounded-2xl bg-white border border-gray-100 transition-all duration-250 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(232,93,4,0.10)] hover:border-[#E85D04]/30"
-                  style={{ boxShadow: "0 2px 8px rgba(15,23,42,0.06)" }}
+                  href="/industries"
+                  className="group relative flex flex-col overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_16px_40px_rgba(0,0,0,0.40)]"
+                  style={{ border: "1px solid rgba(255,255,255,0.08)" }}
                 >
-                  <span className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300 block">{ind.icon}</span>
-                  <span className="font-bold text-[#0A1628] group-hover:text-[#E85D04] transition-colors text-sm leading-tight block mb-1">{ind.name}</span>
-                  <span className="text-[11px] text-gray-400 leading-snug">{ind.desc}</span>
+                  {/* Image */}
+                  <div className="relative h-28 overflow-hidden flex-shrink-0">
+                    <Image
+                      src={ind.image}
+                      alt={ind.name}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      sizes="(max-width: 768px) 50vw, 16vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/40 to-transparent" />
+                    {/* Top accent on hover */}
+                    <span className="absolute inset-x-0 top-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: "linear-gradient(90deg, transparent, #E85D04, transparent)" }} />
+                  </div>
+                  {/* Content */}
+                  <div className="p-4 pt-3 flex flex-col" style={{ background: "rgba(255,255,255,0.04)" }}>
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <span className="text-xl group-hover:scale-110 transition-transform duration-300">{ind.icon}</span>
+                      <span className="font-bold text-white group-hover:text-[#E85D04] transition-colors text-xs leading-tight">{ind.name}</span>
+                    </div>
+                    <span className="text-[10px] text-white/40 leading-snug mb-2">{ind.desc}</span>
+                    <span className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full w-fit" style={{ background: "rgba(232,93,4,0.15)", color: "#E85D04" }}>
+                      <span className="w-1 h-1 rounded-full bg-[#E85D04]" />
+                      {ind.stat}
+                    </span>
+                  </div>
                 </Link>
               </motion.div>
             ))}
@@ -820,7 +872,7 @@ export default function HomePage() {
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}
             className="grid grid-cols-1 md:grid-cols-3 gap-6"
           >
-            {testimonials.map((t) => (
+            {visibleTestimonials.map((t) => (
               <motion.div
                 key={t.id}
                 variants={fadeUp}
@@ -853,7 +905,8 @@ export default function HomePage() {
                       </div>
                       <div>
                         <p className="text-sm font-bold text-[#0A1628]">{t.client}</p>
-                        <p className="text-[10px] text-gray-400">{t.flag} {t.geography} · {t.industry}</p>
+                        <p className="text-[11px] text-gray-500 font-medium">{t.role}</p>
+                        <p className="text-[10px] text-gray-400">{t.flag} {t.company}</p>
                       </div>
                     </div>
                   </div>
@@ -862,6 +915,171 @@ export default function HomePage() {
               </motion.div>
             ))}
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex justify-center mt-10"
+          >
+            <Link
+              href="/testimonials"
+              className="glow-btn flex items-center gap-2 group/btn"
+            >
+              See More Reviews
+              <ChevronRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ─── ISHARA FOUNDATION INTRO ───────────────────────────────────────── */}
+      <section
+        className="relative section-py overflow-hidden border-t border-gray-100/50"
+        style={{
+          backgroundColor: "#F4F9F2",
+          backgroundImage: "radial-gradient(circle, rgba(78,153,68,0.06) 1.5px, transparent 1.5px)",
+          backgroundSize: "28px 28px",
+        }}
+      >
+        <div
+          aria-hidden
+          className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[250px] blur-[100px]"
+          style={{ background: "rgba(125,196,110,0.15)" }}
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            
+            {/* Left: Content */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={stagger}
+            >
+              <motion.div variants={fadeUp} className="mb-5">
+                <span
+                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest"
+                  style={{ background: "rgba(125,196,110,0.18)", color: "#2D5A27", border: "1px solid rgba(125,196,110,0.35)" }}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#4E9944] animate-pulse" />
+                  Social Impact
+                </span>
+              </motion.div>
+              <motion.h2
+                variants={fadeUp}
+                className="text-4xl lg:text-5xl font-black text-[#1A3A1A] mb-6 leading-[1.1] tracking-tight"
+                style={displayFont}
+              >
+                Technology for{" "}
+                <span
+                  style={{
+                    background: "linear-gradient(135deg, #2D5A27 0%, #7DC46E 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  Meaningful
+                </span>{" "}
+                Social Change
+              </motion.h2>
+              <motion.p
+                variants={fadeUp}
+                className="text-gray-600 text-base leading-relaxed mb-8 max-w-xl animate-fade-up"
+              >
+                At NexeraTech Solutions, social impact is a core value, not an afterthought. We partner with <strong>IShara Foundation</strong> to bring technology resources, volunteer hours, and digital education to underserved communities.
+              </motion.p>
+
+              {/* Highlight list */}
+              <motion.div variants={stagger} className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                {[
+                  { title: "Digital Inclusion", desc: "Providing technology and internet access", icon: "🌐" },
+                  { title: "Skills & Education", desc: "Digital literacy workshops for youth", icon: "📚" },
+                  { title: "Infrastructure", desc: "Donating hardware to community hubs", icon: "💻" },
+                  { title: "Volunteering", desc: "Hands-on team support and mentoring", icon: "🤝" },
+                ].map((item, idx) => (
+                  <div key={idx} className="flex gap-3 items-start">
+                    <span className="text-xl">{item.icon}</span>
+                    <div>
+                      <h4 className="font-bold text-[#1A3A1A] text-sm leading-tight mb-1" style={displayFont}>{item.title}</h4>
+                      <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+
+              <motion.div variants={fadeUp}>
+                <Link
+                  href="/csr-foundation"
+                  className="glow-btn"
+                  style={{
+                    background: "linear-gradient(135deg, #2D5A27 0%, #4E9944 60%, #2D5A27 100%)",
+                    boxShadow: "0 8px 24px rgba(45,90,39,0.22)",
+                  }}
+                >
+                  Explore IShara Foundation <ArrowRight className="w-4 h-4" />
+                </Link>
+              </motion.div>
+            </motion.div>
+
+            {/* Right: Premium visual block */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              className="relative"
+            >
+              <div
+                className="relative rounded-3xl p-10 overflow-hidden"
+                style={{
+                  background: "linear-gradient(145deg, #2D5A27 0%, #1A3A1A 100%)",
+                  boxShadow: "0 24px 60px rgba(45,90,39,0.25)",
+                }}
+              >
+                {/* Background dot pattern */}
+                <div
+                  className="absolute inset-0 opacity-10"
+                  style={{
+                    backgroundImage: "radial-gradient(circle, #7DC46E 1px, transparent 1px)",
+                    backgroundSize: "24px 24px",
+                  }}
+                />
+                
+                <div className="relative z-10 text-center flex flex-col items-center">
+                  <div
+                    className="inline-flex items-center justify-center mb-8 rounded-2xl bg-white px-6 py-4 shadow-md"
+                  >
+                    <Image
+                      src="/IShara-Foundation/ISHARA_ FOUNDATION_LOGO.webp"
+                      alt="IShara Foundation"
+                      width={200}
+                      height={65}
+                      className="object-contain"
+                    />
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold text-white mb-2" style={displayFont}>IShara Foundation</h3>
+                  <p className="text-[#7DC46E] text-xs uppercase tracking-widest font-bold mb-4">Our Primary CSR Partner</p>
+                  <p className="text-white/70 text-sm leading-relaxed max-w-sm">
+                    Empowering local communities by enabling computer literacy, distributing basic technology infrastructure, and creating career opportunities in technology.
+                  </p>
+                  
+                  <div className="flex gap-2 justify-center mt-6 flex-wrap">
+                    {["Digital Inclusion", "Statutory CSR Partner", "Grassroots Empowerment"].map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 rounded-full text-[10px] font-bold"
+                        style={{ background: "rgba(125,196,110,0.25)", color: "#7DC46E", border: "1px solid rgba(125,196,110,0.3)" }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+          </div>
         </div>
       </section>
 

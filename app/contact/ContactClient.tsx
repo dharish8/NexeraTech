@@ -199,7 +199,7 @@ export default function ContactClient() {
                   <div className="w-24 h-24 rounded-full flex items-center justify-center mb-6" style={{ background: "rgba(5,150,105,0.10)", border: "2px solid rgba(5,150,105,0.25)" }}>
                     <CheckCircle className="w-12 h-12 text-emerald-500" />
                   </div>
-                  <h3 className="text-3xl font-black text-white mb-3" style={displayFont}>Message Received!</h3>
+                  <h3 className="text-3xl font-black text-[#0A1628] mb-3" style={displayFont}>Message Received!</h3>
                   <p className="text-gray-500 max-w-sm mb-8 text-sm leading-relaxed">
                     Thank you for reaching out. A solution architect will contact you within one business day with an execution plan.
                   </p>
@@ -221,7 +221,7 @@ export default function ContactClient() {
                       <div className="h-1 w-8 rounded-full bg-[#E85D04]" />
                       <span className="text-[11px] font-bold text-[#E85D04] uppercase tracking-[0.18em]">B2B Inquiry</span>
                     </div>
-                    <h3 className="text-2xl font-black text-white mb-2" style={displayFont}>Request a B2B Proposal</h3>
+                    <h3 className="text-2xl font-black text-[#0A1628] mb-2" style={displayFont}>Request a B2B Proposal</h3>
                     <p className="text-gray-500 text-sm">Fill out the details and our architect will get back to you with an execution plan.</p>
                   </div>
 

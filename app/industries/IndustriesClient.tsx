@@ -2,11 +2,21 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Landmark, HeartPulse, Laptop, ShoppingCart, Scale, Factory, CheckCircle } from "lucide-react";
 import { industries } from "@/lib/industries-data";
 
 const iconMap: Record<string, React.ElementType> = {
   Landmark, HeartPulse, Laptop, ShoppingCart, Scale, Factory,
+};
+
+const imageMap: Record<string, string> = {
+  "bfsi-fintech": "/industries/BFSI-Fintech.webp",
+  "healthcare": "/industries/Healthcare.webp",
+  "technology-saas": "/industries/Technology-SaaS.webp",
+  "retail-ecommerce": "/industries/Retail-E-Commerce.webp",
+  "legal": "/industries/Legal.webp",
+  "manufacturing": "/industries/Manufacturing.webp",
 };
 
 const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } } };
@@ -42,44 +52,89 @@ export default function IndustriesClient() {
       {/* Industry Cards */}
       <section className="section-py bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {industries.map((industry) => {
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="flex flex-col gap-12">
+            {industries.map((industry, index) => {
               const Icon = iconMap[industry.icon] || Landmark;
+              const isEven = index % 2 === 0;
               return (
                 <motion.div key={industry.slug} variants={fadeUp}>
-                  <div className="group bg-white rounded-2xl border-2 border-gray-100 hover:border-[#E85D04] card-hover overflow-hidden h-full transition-all duration-300">
-                    {/* Color strip */}
-                    <div className="h-1.5" style={{ background: industry.color }} />
-                    <div className="p-8">
-                      <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300" style={{ background: industry.color + "18" }}>
-                        <Icon className="w-7 h-7" style={{ color: industry.color }} />
-                      </div>
-                      <h2 className="text-2xl font-bold text-[#0A1628] mb-2 group-hover:text-[#E85D04] transition-colors">{industry.name}</h2>
-                      <p className="text-sm font-medium mb-4" style={{ color: industry.color }}>{industry.tagline}</p>
-                      <p className="text-gray-500 text-sm leading-relaxed mb-6">{industry.description}</p>
+                  <div className={`group bg-white rounded-3xl border border-gray-100 hover:border-[#E85D04]/30 shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-500 flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
+                    {/* Image block */}
+                    <div className="w-full lg:w-[42%] min-h-[280px] sm:min-h-[350px] lg:min-h-[420px] relative overflow-hidden flex-shrink-0">
+                      <Image
+                        src={imageMap[industry.slug] || "/industries/BFSI-Fintech.webp"}
+                        alt={industry.name}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                        sizes="(max-w-1024px) 100vw, 42vw"
+                        priority={index < 2}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent lg:hidden" />
+                      <div className={`absolute inset-0 hidden lg:block bg-gradient-to-r ${isEven ? 'from-black/10' : 'to-black/10'} via-transparent to-transparent`} />
+                      
+                      {/* Top accent line matching industry theme */}
+                      <div className="absolute top-0 inset-x-0 h-1.5" style={{ background: industry.color }} />
+                    </div>
 
-                      {/* Key challenges */}
-                      <div className="mb-6">
-                        <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Key Challenges We Address</p>
-                        <ul className="space-y-2">
-                          {industry.challenges.slice(0, 3).map((ch, i) => (
-                            <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                              <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-1.5" style={{ background: industry.color }} />
-                              {ch}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                    {/* Content block */}
+                    <div className="w-full lg:w-[58%] p-8 sm:p-10 lg:p-12 flex flex-col justify-between relative">
+                      {/* Sub-accent decorative line for non-even border layout */}
+                      <div className={`absolute top-0 bottom-0 w-[4px] hidden lg:block ${isEven ? 'left-0' : 'right-0'}`} style={{ background: industry.color }} />
 
-                      {/* Services tags */}
                       <div>
-                        <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Key Services</p>
-                        <div className="flex flex-wrap gap-1.5">
-                          {industry.keyServices.map((svc, i) => (
-                            <span key={i} className="px-2.5 py-1 rounded-full text-xs font-medium" style={{ background: industry.color + "15", color: industry.color }}>
-                              {svc}
-                            </span>
-                          ))}
+                        {/* Title & Tagline */}
+                        <div className="flex items-center gap-4 mb-5">
+                          <div className="w-14 h-14 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300" style={{ background: industry.color + "18" }}>
+                            <Icon className="w-7 h-7" style={{ color: industry.color }} />
+                          </div>
+                          <div>
+                            <p className="text-xs font-bold uppercase tracking-widest" style={{ color: industry.color }}>
+                              {industry.tagline}
+                            </p>
+                            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0A1628] group-hover:text-[#E85D04] transition-colors mt-0.5">
+                              {industry.name}
+                            </h2>
+                          </div>
+                        </div>
+
+                        <p className="text-gray-500 text-base leading-relaxed mb-8">
+                          {industry.description}
+                        </p>
+
+                        {/* Details grid */}
+                        <div className="grid md:grid-cols-2 gap-8">
+                          {/* Challenges */}
+                          <div>
+                            <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">
+                              Key Challenges We Address
+                            </p>
+                            <ul className="space-y-2.5">
+                              {industry.challenges.slice(0, 4).map((ch, i) => (
+                                <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
+                                  <div className="w-2 h-2 rounded-full flex-shrink-0 mt-1.5" style={{ background: industry.color }} />
+                                  <span>{ch}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          {/* Services */}
+                          <div>
+                            <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">
+                              Key Services Offered
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              {industry.keyServices.map((svc, i) => (
+                                <span
+                                  key={i}
+                                  className="px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-300 hover:-translate-y-0.5"
+                                  style={{ background: industry.color + "15", color: industry.color }}
+                                >
+                                  {svc}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -143,7 +198,7 @@ export default function IndustriesClient() {
                   { ind: "Manufacturing", how: "ERP integrations, supply chain automation, IoT applications, IT infrastructure management", svcs: "Software Dev, Cloud, Managed IT" },
                 ].map((row, i) => (
                   <tr key={i} className={`border-t border-gray-100 ${i % 2 === 0 ? "bg-white" : "bg-gray-50"} hover:bg-[#FFF4EC] transition-colors`}>
-                    <td className="px-6 py-4 font-semibold text-white whitespace-nowrap">{row.ind}</td>
+                    <td className="px-6 py-4 font-semibold text-[#0A1628] whitespace-nowrap">{row.ind}</td>
                     <td className="px-6 py-4 text-gray-600 max-w-xs">{row.how}</td>
                     <td className="px-6 py-4">
                       <span className="text-[#E85D04] font-medium text-xs">{row.svcs}</span>

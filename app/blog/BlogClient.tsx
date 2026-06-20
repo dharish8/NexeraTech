@@ -61,7 +61,7 @@ export default function BlogClient() {
                       <Clock className="w-3.5 h-3.5" />{featured.readTime}
                     </span>
                   </div>
-                  <h2 className="text-3xl font-bold text-white mb-4 group-hover:text-[#E85D04] transition-colors leading-tight">{featured.title}</h2>
+                  <h2 className="text-3xl font-bold text-[#0A1628] mb-4 group-hover:text-[#E85D04] transition-colors leading-tight">{featured.title}</h2>
                   <p className="text-gray-500 leading-relaxed mb-6">{featured.excerpt}</p>
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2">
@@ -92,7 +92,7 @@ export default function BlogClient() {
       <section className="pb-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="mb-8">
-            <h2 className="text-3xl font-bold text-white">Latest Articles</h2>
+            <h2 className="text-3xl font-bold text-[#0A1628]">Latest Articles</h2>
           </motion.div>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {rest.map((post) => (
@@ -108,7 +108,7 @@ export default function BlogClient() {
                     </div>
                   </div>
                   <div className="p-6">
-                    <h3 className="font-bold text-white text-lg mb-2 group-hover:text-[#E85D04] transition-colors leading-snug">{post.title}</h3>
+                    <h3 className="font-bold text-[#0A1628] text-lg mb-2 group-hover:text-[#E85D04] transition-colors leading-snug">{post.title}</h3>
                     <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-3">{post.excerpt}</p>
                     <div className="flex items-center justify-between">
                       <span className="text-xs text-gray-400 flex items-center gap-1">

@@ -138,7 +138,7 @@ export const services: Service[] = [
     description:
       "For US and UK companies operating in India — or Indian companies managing global payroll — we provide end-to-end payroll processing, statutory compliance, Employer of Record services, and HR operations support. We handle everything from monthly salary disbursement and TDS filings to new hire onboarding and termination processing, giving clients a compliant, fully managed workforce solution without entity setup overhead.",
     icon: "Banknote",
-    color: "#0A1628",
+    color: "#E85D04",
     features: [
       "End-to-end monthly payroll processing",
       "PF, ESI, TDS filing and statutory compliance",
@@ -196,7 +196,7 @@ export const services: Service[] = [
     description:
       "Nexeratech's cloud practice delivers infrastructure architecture, cloud migration, and managed cloud operations across AWS, Azure, and GCP. From serverless-first designs to containerized microservices, we help clients build resilient, cost-optimized cloud environments — with security and compliance baked in from day one.",
     icon: "Cloud",
-    color: "#0A1628",
+    color: "#E85D04",
     features: [
       "AWS, Azure, GCP architecture and deployment",
       "Cloud migration (lift-and-shift, re-platform, re-architect)",
@@ -312,7 +312,7 @@ export const services: Service[] = [
     description:
       "Nexeratech's Finance and Accounting Outsourcing (FAO) service gives businesses a fully managed accounting function — from bookkeeping and accounts payable/receivable to monthly MIS reporting, GST filing, and annual statutory compliance. We serve SMBs, startups, and growing mid-market companies across India and for India-operations of US/UK companies.",
     icon: "BarChart3",
-    color: "#0A1628",
+    color: "#E85D04",
     features: [
       "Bookkeeping and accounts payable/receivable",
       "Monthly MIS and P&L reporting",

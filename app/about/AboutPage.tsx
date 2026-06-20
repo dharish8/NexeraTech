@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   Globe,
@@ -111,42 +112,27 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-            {/* Left: Visual Card */}
+            {/* Left: Visual Card with Hyderabad HQ image */}
             <div className="relative">
               <div
-                className="relative w-full h-[400px] rounded-[40px_10px_40px_10px] overflow-hidden flex items-center justify-center"
+                className="relative w-full h-[400px] rounded-[40px_10px_40px_10px] overflow-hidden"
                 style={{
-                  background: "linear-gradient(135deg, #0A1628 0%, #132238 100%)",
                   border: "1px solid rgba(232,93,4,0.15)",
                   boxShadow: "0 24px 64px rgba(15,23,42,0.14)",
                 }}
               >
-                <div
-                  aria-hidden
-                  className="absolute inset-0 opacity-10"
-                  style={{
-                    backgroundImage: "radial-gradient(circle, rgba(232,93,4,0.3) 1px, transparent 1px)",
-                    backgroundSize: "22px 22px",
-                  }}
+                <Image
+                  src="/about/Hyderabad-HQ.webp"
+                  alt="NexeraTech Hyderabad HQ"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
                 />
-                {/* Ambient orb */}
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute -top-10 -right-10 w-[200px] h-[200px] rounded-full blur-[60px] opacity-20"
-                  style={{ background: "#E85D04" }}
-                />
-                <div className="z-10 text-center px-8">
-                  <div
-                    className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 animate-float"
-                    style={{
-                      background: "rgba(232,93,4,0.12)",
-                      border: "1px solid rgba(232,93,4,0.30)",
-                    }}
-                  >
-                    <Globe className="w-10 h-10 text-[#E85D04]" />
-                  </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/80 via-[#0A1628]/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 z-10 p-8 text-center">
                   <h3 className="text-2xl font-bold text-white mb-2" style={displayFont}>Hyderabad HQ</h3>
-                  <p className="text-sm text-white/45 max-w-xs mx-auto">
+                  <p className="text-sm text-white/70 max-w-xs mx-auto">
                     Operating across global time zones (IST, EST, GMT) to ensure seamless delivery.
                   </p>
                 </div>
@@ -160,7 +146,7 @@ export default function AboutPage() {
               </motion.div>
               <motion.h2
                 variants={fadeUp}
-                className="text-4xl font-black text-white mb-6 leading-[1.05] tracking-tight"
+                className="text-4xl font-black text-[#0A1628] mb-6 leading-[1.05] tracking-tight"
                 style={displayFont}
               >
                 Next-Generation IT Services<br />
@@ -177,7 +163,7 @@ export default function AboutPage() {
                   "Compliance-First Custom Software Development",
                   "Advanced AI/ML Labs & Custom Model Deployments",
                 ].map((item, i) => (
-                  <motion.li key={i} variants={fadeUp} className="flex items-center gap-3 text-sm text-white font-semibold">
+                  <motion.li key={i} variants={fadeUp} className="flex items-center gap-3 text-sm text-[#0A1628] font-semibold">
                     <div
                       className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0"
                       style={{ background: "rgba(232,93,4,0.12)", border: "1px solid rgba(232,93,4,0.25)" }}
@@ -190,12 +176,12 @@ export default function AboutPage() {
               </motion.ul>
 
               {/* Stat + Founder card */}
-              <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-8 border-t border-gray-100 pt-6">
+              <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-8 border-t border-gray-200 pt-6">
                 <div className="flex items-center gap-3">
                   <span className="text-5xl font-extrabold text-[#E85D04] tracking-tight" style={displayFont}>25+</span>
                   <div>
-                    <p className="text-xs font-bold text-white uppercase tracking-wider">Tech Experts</p>
-                    <p className="text-[10px] text-gray-400">Delivering Outcomes</p>
+                    <p className="text-xs font-bold text-[#0A1628] uppercase tracking-wider">Tech Experts</p>
+                    <p className="text-[10px] text-gray-500">Delivering Outcomes</p>
                   </div>
                 </div>
                 <div
@@ -206,8 +192,8 @@ export default function AboutPage() {
                     KD
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-white">K. Durga Prasad</p>
-                    <p className="text-[9px] text-gray-400">Founder & MD · info@nexeratechsolutions.com</p>
+                    <p className="text-xs font-bold text-[#0A1628]">K. Durga Prasad</p>
+                    <p className="text-[9px] text-gray-500">Founder & MD · info@nexeratechsolutions.com</p>
                   </div>
                 </div>
               </motion.div>
@@ -236,7 +222,7 @@ export default function AboutPage() {
             className="flex flex-col items-center text-center max-w-3xl mx-auto mb-14"
           >
             <span className="eyebrow-tag mb-5"><span className="dot" />Purpose & Direction</span>
-            <h2 className="text-4xl sm:text-5xl font-black text-white leading-[1.05] tracking-tight" style={displayFont}>
+            <h2 className="text-4xl sm:text-5xl font-black text-[#0A1628] leading-[1.05] tracking-tight" style={displayFont}>
               Mission &{" "}<span className="gradient-text">Vision</span>
             </h2>
           </motion.div>
@@ -374,16 +360,16 @@ export default function AboutPage() {
             className="flex flex-col items-center text-center max-w-3xl mx-auto mb-14"
           >
             <span className="eyebrow-tag mb-5"><span className="dot" />Global Reach</span>
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-white leading-[1.06] tracking-tight" style={displayFont}>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-[#0A1628] leading-[1.06] tracking-tight" style={displayFont}>
               Where We Operate
             </h2>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { flag: "🇺🇸", market: "United States", detail: "Offshore engineering teams for US-based clients. EST timezone alignment. Series A to enterprise scale.", color: "#E85D04" },
-              { flag: "🇬🇧", market: "United Kingdom", detail: "Healthcare tech, SaaS development, and IAM implementation for UK enterprises. GMT timezone.", color: "#E85D04" },
-              { flag: "🇮🇳", market: "India (HQ)", detail: "Hyderabad delivery center. Payroll, EOR, and domestic software development for Indian enterprises.", color: "#E85D04" },
+              { flag: "🇺🇸", market: "United States", detail: "Offshore engineering teams for US-based clients. EST timezone alignment. Series A to enterprise scale.", color: "#E85D04", image: "/about/Global-Reach/United-States.webp" },
+              { flag: "🇬🇧", market: "United Kingdom", detail: "Healthcare tech, SaaS development, and IAM implementation for UK enterprises. GMT timezone.", color: "#E85D04", image: "/about/Global-Reach/United-Kingdom.webp" },
+              { flag: "🇮🇳", market: "India (HQ)", detail: "Hyderabad delivery center. Payroll, EOR, and domestic software development for Indian enterprises.", color: "#E85D04", image: "/about/Global-Reach/India-Gate.webp" },
             ].map((m, i) => (
               <motion.div
                 key={i}
@@ -391,19 +377,32 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15 }}
-                className="group relative bg-white rounded-2xl p-8 text-center overflow-hidden transition-all duration-300 hover:-translate-y-1.5"
+                className="group relative bg-white rounded-2xl overflow-hidden text-center transition-all duration-300 hover:-translate-y-1.5"
                 style={{ border: "1px solid rgba(15,23,42,0.08)", boxShadow: "0 2px 12px rgba(15,23,42,0.06)" }}
               >
                 <span
-                  className="absolute inset-x-0 top-0 h-[3px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute inset-x-0 top-0 h-[3px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
                   style={{ background: `linear-gradient(90deg, transparent, ${m.color}, transparent)` }}
                 />
-                <span className="text-5xl block mb-4">{m.flag}</span>
-                <h3 className="text-xl font-bold mb-3" style={{ color: m.color, ...displayFont }}>{m.market}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{m.detail}</p>
-                <div className="flex items-center justify-center gap-2 mt-4">
-                  <MapPin className="w-4 h-4" style={{ color: m.color }} />
-                  <span className="text-xs font-medium" style={{ color: m.color }}>Active market</span>
+                {/* Market image */}
+                <div className="h-40 relative overflow-hidden">
+                  <Image
+                    src={m.image}
+                    alt={m.market}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  <span className="absolute top-3 right-3 text-3xl">{m.flag}</span>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-3" style={{ color: m.color, ...displayFont }}>{m.market}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{m.detail}</p>
+                  <div className="flex items-center justify-center gap-2 mt-4">
+                    <MapPin className="w-4 h-4" style={{ color: m.color }} />
+                    <span className="text-xs font-medium" style={{ color: m.color }}>Active market</span>
+                  </div>
                 </div>
                 <span
                   className="absolute inset-x-0 bottom-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -435,7 +434,7 @@ export default function AboutPage() {
             className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16"
           >
             <span className="eyebrow-tag mb-5"><span className="dot" />Experts Behind Your Solutions</span>
-            <h2 className="text-4xl lg:text-5xl font-black text-white leading-[1.05] tracking-tight" style={displayFont}>
+            <h2 className="text-4xl lg:text-5xl font-black text-[#0A1628] leading-[1.05] tracking-tight" style={displayFont}>
               Our <span className="gradient-text">Expert</span> Team
             </h2>
           </motion.div>
@@ -474,7 +473,7 @@ export default function AboutPage() {
                     {member.initials}
                   </span>
                 </div>
-                <h4 className="text-white font-bold text-base mb-1" style={displayFont}>{member.name}</h4>
+                <h4 className="text-[#0A1628] font-bold text-base mb-1" style={displayFont}>{member.name}</h4>
                 <p className="text-xs text-[#E85D04] font-semibold mb-4">{member.role}</p>
                 <div className="flex items-center justify-center gap-2">
                   {[Facebook, Linkedin, Twitter].map((Icon, idx) => (
@@ -523,7 +522,7 @@ export default function AboutPage() {
             className="flex flex-col items-center text-center max-w-3xl mx-auto mb-14"
           >
             <span className="eyebrow-tag mb-5"><span className="dot" />Service Portfolio</span>
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-white leading-[1.06] tracking-tight" style={displayFont}>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-[#0A1628] leading-[1.06] tracking-tight" style={displayFont}>
               Five Core Practice Areas
             </h2>
           </motion.div>
@@ -546,7 +545,7 @@ export default function AboutPage() {
               >
                 <Link
                   href={item.href}
-                  className="group relative flex bg-white rounded-2xl p-7 overflow-hidden h-full transition-all duration-300 hover:-translate-y-1.5"
+                  className="group relative flex bg-white rounded-2xl p-7 overflow-hidden h-full transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(232,93,4,0.12)]"
                   style={{ border: "1px solid rgba(15,23,42,0.08)", boxShadow: "0 2px 12px rgba(15,23,42,0.06)" }}
                 >
                   <span
@@ -554,11 +553,11 @@ export default function AboutPage() {
                     style={{ background: "linear-gradient(90deg, transparent, #E85D04, transparent)" }}
                   />
                   <div className="flex items-start gap-4">
-                    <span className="text-3xl font-bold text-[#E85D04]/20 font-mono flex-shrink-0" style={displayFont}>
+                    <span className="text-3xl font-bold text-[#E85D04]/20 font-mono flex-shrink-0 transition-colors duration-300 group-hover:text-[#E85D04]" style={displayFont}>
                       {item.n}
                     </span>
                     <div>
-                      <h3 className="font-bold text-white mb-2 group-hover:text-[#E85D04] transition-colors" style={displayFont}>
+                      <h3 className="font-bold text-[#0A1628] mb-2 group-hover:text-[#E85D04] transition-colors" style={displayFont}>
                         {item.title}
                       </h3>
                       <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>

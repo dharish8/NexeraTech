@@ -161,8 +161,11 @@ export default function TestimonialsPage() {
                     <p className="text-sm font-bold text-[#0A1628] leading-tight">
                       {testimonial.client}
                     </p>
+                    <p className="text-xs text-[#E85D04] font-semibold mt-0.5">
+                      {testimonial.role}
+                    </p>
                     <p className="text-xs text-gray-400 mt-0.5">
-                      {testimonial.company} · {testimonial.flag} {testimonial.geography}
+                      {testimonial.company} · {testimonial.flag}
                     </p>
                   </div>
                 </div>

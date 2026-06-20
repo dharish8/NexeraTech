@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, ArrowRight, Phone, MapPin } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight, MapPin } from "lucide-react";
 import { services } from "@/lib/services-data";
 
 const navLinks = [
@@ -15,7 +15,6 @@ const navLinks = [
   { label: "Case Studies", href: "/case-studies" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "Blog", href: "/blog" },
-  { label: "CSR Foundation", href: "/csr-foundation" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -233,15 +232,6 @@ export default function Navbar() {
 
             {/* CTA + Mobile toggle */}
             <div className="flex items-center gap-3">
-              {/* Phone pill */}
-              <a
-                href="tel:+914000000000"
-                className="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-semibold text-white/50 hover:text-[#E85D04] transition-colors duration-200"
-                style={{ border: "1px solid rgba(255,255,255,0.08)" }}
-              >
-                <Phone className="w-3 h-3" />
-                +91 40 XXXX XXXX
-              </a>
               <Link
                 href="/contact"
                 className="hidden lg:flex glow-btn text-[13px]"
@@ -314,10 +304,6 @@ export default function Navbar() {
                   Get in Touch <ArrowRight className="w-4 h-4" />
                 </Link>
                 <div className="flex items-center gap-3 justify-center">
-                  <a href="tel:+914000000000" className="text-sm text-white/30 hover:text-[#E85D04] transition-colors">
-                    +91 40 XXXX XXXX
-                  </a>
-                  <span className="text-white/15">·</span>
                   <a href="mailto:info@nexeratechsolutions.com" className="text-sm text-white/30 hover:text-[#E85D04] transition-colors">
                     info@nexeratechsolutions.com
                   </a>
