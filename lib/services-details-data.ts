@@ -4,6 +4,7 @@ export interface FeatureDetail {
   title: string;
   desc: string;
   iconName: string;
+  image?: string;
 }
 
 export interface UseCaseDetail {
@@ -44,32 +45,38 @@ export const servicesDetailsMap: Record<string, ServiceDetailConfig> = {
       {
         title: "Senior Tech Talent",
         desc: "Dedicated offshore engineering squads customized to your technology requirements.",
-        iconName: "Users"
+        iconName: "Users",
+        image: "/Services/offshore-it-services/Key-Features-Capabilities/Senior-Tech-Talent.webp"
       },
       {
         title: "Local Engagement",
         desc: "Onshore management for seamless timezone alignment and communication.",
-        iconName: "UserCheck"
+        iconName: "UserCheck",
+        image: "/Services/offshore-it-services/Key-Features-Capabilities/Local-Engagement.webp"
       },
       {
         title: "Timezone Coverage",
         desc: "IST, EST & GMT shifts to ensure overlap with your local business hours.",
-        iconName: "Globe"
+        iconName: "Globe",
+        image: "/Services/offshore-it-services/Key-Features-Capabilities/Timezone-Coverage.webp"
       },
       {
         title: "Agile Development",
         desc: "Scrum methodology, daily standups, sprint reviews, and retrospective loops.",
-        iconName: "Zap"
+        iconName: "Zap",
+        image: "/Services/offshore-it-services/Key-Features-Capabilities/Agile-Development.webp"
       },
       {
         title: "Integrated Workspaces",
         desc: "Full integration with your Jira, Slack, GitHub, and internal channels.",
-        iconName: "Layers"
+        iconName: "Layers",
+        image: "/Services/offshore-it-services/Key-Features-Capabilities/Integrated-Workspaces.webp"
       },
       {
         title: "Exclusive Resources",
         desc: "Engineers work 100% on your product, not shared with other projects.",
-        iconName: "CheckCircle"
+        iconName: "CheckCircle",
+        image: "/Services/offshore-it-services/Key-Features-Capabilities/Exclusive-Resources.webp"
       }
     ],
     useCases: [
@@ -114,32 +121,38 @@ export const servicesDetailsMap: Record<string, ServiceDetailConfig> = {
       {
         title: "Full-stack Web & Mobile Development",
         desc: "Modern, scalable, and responsive applications built with the latest technologies.",
-        iconName: "Monitor"
+        iconName: "Monitor",
+        image: "/Services/software-development/Full-stack-Web-Mobile-Development.webp"
       },
       {
         title: "Cloud-native Architecture",
         desc: "Secure, resilient, and high-performance solutions on AWS, Azure, and GCP.",
-        iconName: "Cloud"
+        iconName: "Cloud",
+        image: "/Services/software-development/Cloud-native-Architecture.webp"
       },
       {
         title: "API Design & Integrations",
         desc: "Robust APIs and seamless third-party integrations that power connected experiences.",
-        iconName: "Zap"
+        iconName: "Zap",
+        image: "/Services/software-development/API-Design-Integrations.webp"
       },
       {
         title: "SaaS Product Engineering",
         desc: "From MVP to scale - build SaaS products that are scalable, reliable, and market-ready.",
-        iconName: "Rocket"
+        iconName: "Rocket",
+        image: "/Services/software-development/SaaS-Product-Engineering.webp"
       },
       {
         title: "Legacy System Modernization",
         desc: "Modernize legacy systems and transform them into agile, future-ready platforms.",
-        iconName: "Layers"
+        iconName: "Layers",
+        image: "/Services/software-development/Legacy-System-Modernization.webp"
       },
       {
         title: "CI/CD Pipeline & DevOps",
         desc: "Automate, deploy, and scale with best-in-class DevOps practices and CI/CD pipelines.",
-        iconName: "Settings"
+        iconName: "Settings",
+        image: "/Services/software-development/CI-CD-Pipeline-DevOps.webp"
       }
     ],
     useCases: [
@@ -260,32 +273,38 @@ export const servicesDetailsMap: Record<string, ServiceDetailConfig> = {
       {
         title: "Okta Single Sign-On",
         desc: "Enterprise-grade Okta integration, policy setup, and provisioning.",
-        iconName: "Shield"
+        iconName: "Shield",
+        image: "/Services/iam-cybersecurity/Okta-Single-Sign-On.webp"
       },
       {
         title: "Microsoft Azure AD / Entra ID",
         desc: "Identity federation, access reviews, and hybrid AD setups.",
-        iconName: "Users"
+        iconName: "Users",
+        image: "/Services/iam-cybersecurity/Microsoft-Azure-AD-Entra-ID.webp"
       },
       {
         title: "Cloud Security Policy",
         desc: "Granular role configurations, resource policies, and compliance guardrails.",
-        iconName: "Cloud"
+        iconName: "Cloud",
+        image: "/Services/iam-cybersecurity/Cloud-Security-Policy.webp"
       },
       {
         title: "Zero Trust Access",
         desc: "Deploy modern boundaryless security replacing legacy VPN systems.",
-        iconName: "Lock"
+        iconName: "Lock",
+        image: "/Services/iam-cybersecurity/Zero-Trust-Access.webp"
       },
       {
         title: "Privileged Access Management",
         desc: "Deploy CyberArk and BeyondTrust to protect system administrator credentials.",
-        iconName: "Key"
+        iconName: "Key",
+        image: "/Services/iam-cybersecurity/Privileged-Access-Management.webp"
       },
       {
         title: "SSO & MFA Policies",
         desc: "Enforce secure multi-factor authentication across your enterprise apps.",
-        iconName: "UserCheck"
+        iconName: "UserCheck",
+        image: "/Services/iam-cybersecurity/SSO-MFA-Policies.webp"
       }
     ],
     useCases: [
@@ -330,32 +349,38 @@ export const servicesDetailsMap: Record<string, ServiceDetailConfig> = {
       {
         title: "Salary Disbursement",
         desc: "On-time and error-free payroll calculation and direct bank transfer.",
-        iconName: "Banknote"
+        iconName: "Banknote",
+        image: "/Services/payroll-eor/Salary-Disbursement.webp"
       },
       {
         title: "PF & ESIC Filing",
         desc: "Statutory tax deductions, monthly filing, and audit management.",
-        iconName: "CheckCircle"
+        iconName: "CheckCircle",
+        image: "/Services/payroll-eor/PF-ESIC-Filing.webp"
       },
       {
         title: "Employer of Record",
         desc: "Hire employees in India without setting up a local entity.",
-        iconName: "UserCheck"
+        iconName: "UserCheck",
+        image: "/Services/payroll-eor/Employer-of-Record.webp"
       },
       {
         title: "Employee Onboarding",
         desc: "Contract preparation, background verification, and compliance checks.",
-        iconName: "Users"
+        iconName: "Users",
+        image: "/Services/payroll-eor/Employee-Onboarding.webp"
       },
       {
         title: "Multi-State Compliance",
         desc: "Handle varying state tax regulations and professional taxes.",
-        iconName: "Globe"
+        iconName: "Globe",
+        image: "/Services/payroll-eor/Multi-State-Compliance.webp"
       },
       {
         title: "Compliance Remediation",
         desc: "Audit responses and statutory cleanups to mitigate legal risks.",
-        iconName: "Shield"
+        iconName: "Shield",
+        image: "/Services/payroll-eor/Compliance-Remediation.webp"
       }
     ],
     useCases: [
@@ -470,32 +495,38 @@ export const servicesDetailsMap: Record<string, ServiceDetailConfig> = {
       {
         title: "AWS/Azure Solutions",
         desc: "Design robust, highly available cloud-native architectures.",
-        iconName: "Cloud"
+        iconName: "Cloud",
+        image: "/Services/cloud-services/AWS-Azure-Solutions.webp"
       },
       {
         title: "Secure Cloud Migration",
         desc: "Seamlessly lift-and-shift or refactor legacy databases to cloud.",
-        iconName: "ArrowRight"
+        iconName: "ArrowRight",
+        image: "/Services/cloud-services/Secure-Cloud-Migration.webp"
       },
       {
         title: "Serverless Architecture",
         desc: "Build microservices using AWS Lambda and API Gateways.",
-        iconName: "Cpu"
+        iconName: "Cpu",
+        image: "/Services/cloud-services/Serverless-Architecture.webp"
       },
       {
         title: "IaC (Terraform)",
         desc: "Declarative configuration files to provision resources predictably.",
-        iconName: "Terminal"
+        iconName: "Terminal",
+        image: "/Services/cloud-services/IaC-Terraform.webp"
       },
       {
         title: "FinOps & Cost Tuning",
         desc: "Identify idle instances and optimize storage configurations.",
-        iconName: "BarChart3"
+        iconName: "BarChart3",
+        image: "/Services/cloud-services/FinOps-Cost-Tuning.webp"
       },
       {
         title: "Backup & Redundancy",
         desc: "Implement failover configurations and high-speed data backup loops.",
-        iconName: "Shield"
+        iconName: "Shield",
+        image: "/Services/cloud-services/Backup-Redundancy.webp"
       }
     ],
     useCases: [
@@ -680,32 +711,38 @@ export const servicesDetailsMap: Record<string, ServiceDetailConfig> = {
       {
         title: "End-to-End Recruitment",
         desc: "Manage candidate sourcing, screening, and interview scheduling.",
-        iconName: "Users"
+        iconName: "Users",
+        image: "/Services/recruitment-rpo/End-to-End-Recruitment.webp"
       },
       {
         title: "Global Talent Pipelines",
         desc: "Source candidates across India, US, and UK tech hubs.",
-        iconName: "Globe"
+        iconName: "Globe",
+        image: "/Services/recruitment-rpo/Global-Talent-Pipelines.webp"
       },
       {
         title: "ATS Management",
         desc: "Organize candidate profiles and pipeline status reports.",
-        iconName: "Layers"
+        iconName: "Layers",
+        image: "/Services/recruitment-rpo/ATS-Management.webp"
       },
       {
         title: "JD & Sourcing Audits",
         desc: "Optimize job descriptions to attract high-quality candidates.",
-        iconName: "Search"
+        iconName: "Search",
+        image: "/Services/recruitment-rpo/JD-Sourcing-Audits.webp"
       },
       {
         title: "New Hire Coordination",
         desc: "Pre-onboarding checkups, background verifications, and offer letters.",
-        iconName: "UserCheck"
+        iconName: "UserCheck",
+        image: "/Services/recruitment-rpo/New-Hire-Coordination.webp"
       },
       {
         title: "EOR Compatibility",
         desc: "Directly link recruitment to payroll for smooth remote setups.",
-        iconName: "Banknote"
+        iconName: "Banknote",
+        image: "/Services/recruitment-rpo/EOR-Compatibility.webp"
       }
     ],
     useCases: [

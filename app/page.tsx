@@ -91,142 +91,382 @@ export default function HomePage() {
   const [showAllTestimonials, setShowAllTestimonials] = useState(false);
   const visibleTestimonials = showAllTestimonials ? testimonials : testimonials.slice(0, 3);
 
+  const heroImages = [
+    "/landing-page/image1.webp",
+    "/landing-page/image2.webp",
+    "/landing-page/image3.webp",
+  ];
+  const [activeHeroImg, setActiveHeroImg] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setActiveHeroImg((p) => (p + 1) % heroImages.length), 4500);
+    return () => clearInterval(t);
+  }, []);
+
+  const ease: any = [0.22, 1, 0.36, 1];
+
   return (
     <div className="overflow-hidden bg-white text-white">
 
       {/* ─── HERO ─────────────────────────────────────────────────────────── */}
       <section
-        className="relative min-h-[92vh] flex items-center overflow-hidden"
+        className="relative min-h-screen flex items-center overflow-hidden"
         style={{ backgroundColor: "#0B1120" }}
       >
-        {/* Dot grid */}
+        {/* Animated background grid */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0"
           style={{
-            backgroundImage: "radial-gradient(circle, rgba(232,93,4,0.16) 1.5px, transparent 1.5px)",
-            backgroundSize: "32px 32px",
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
           }}
         />
 
-        {/* Ambient orbs */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-          {/* Floating dots */}
-          <div className="absolute top-24 left-1/3 w-3 h-3 rounded-full bg-[#E85D04] opacity-50 animate-float" />
-          <div className="absolute bottom-32 left-1/4 w-2 h-2 rounded-full bg-[#FF802B] opacity-40 animate-float-slow" />
-          <div className="absolute top-1/3 right-1/3 w-2 h-2 rounded-full bg-[#E85D04] opacity-60 animate-float" style={{ animationDelay: "2s" }} />
-          <div className="absolute bottom-1/3 right-1/4 w-1.5 h-1.5 rounded-full bg-[#FF9449] opacity-45 animate-float-slow" style={{ animationDelay: "3s" }} />
-        </div>
+        {/* RIGHT PANEL: Diagonal clipped image carousel */}
+        <motion.div
+          className="absolute top-0 right-0 bottom-0 hidden lg:block"
+          style={{ width: "52%" }}
+          initial={{ opacity: 0, x: 60 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.1, ease, delay: 0.2 }}
+        >
+          {/* Image layer */}
+          <div
+            className="absolute inset-0"
+            style={{ clipPath: "polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
+          >
+            {heroImages.map((src, idx) => (
+              <Image
+                key={src}
+                src={src}
+                alt={`NexeraTech hero ${idx + 1}`}
+                fill
+                priority={idx === 0}
+                className="object-cover object-center absolute inset-0 transition-opacity duration-1000"
+                style={{ opacity: activeHeroImg === idx ? 0.82 : 0 }}
+                sizes="52vw"
+              />
+            ))}
+            {/* Left-to-right fade overlay */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to right, rgba(11,17,32,0.95) 0%, rgba(11,17,32,0.42) 38%, rgba(11,17,32,0.08) 100%)",
+              }}
+            />
+            {/* Bottom fade */}
+            <div
+              className="absolute bottom-0 left-0 right-0 h-36"
+              style={{ background: "linear-gradient(to top, rgba(11,17,32,0.85), transparent)" }}
+            />
+          </div>
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-28 relative z-10 text-center">
-          <div className="flex flex-col items-center">
-
-            {/* Centered Text Column */}
-            <motion.div initial="hidden" animate="visible" variants={stagger} className="flex flex-col items-center">
-
-              {/* Eyebrow */}
-              <motion.div variants={fadeUp} className="mb-6">
-                <span className="eyebrow-tag eyebrow-tag-dark">
-                  <span className="dot" />
-                  B2B Technology Partner · Hyderabad
-                </span>
-              </motion.div>
-
-              {/* Stars rating */}
-              <motion.div variants={fadeUp} className="flex items-center justify-center gap-3 mb-6">
-                <div className="flex items-center gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-[#E85D04] text-[#E85D04]" />
-                  ))}
-                </div>
-                <div className="h-4 w-px bg-white/20" />
-                <span className="text-xs text-white/50 tracking-widest uppercase">Trusted by 40+ Enterprises</span>
-              </motion.div>
-
-              {/* Headline */}
-              <motion.h1
-                variants={fadeUp}
-                className="text-5xl lg:text-6xl xl:text-[4.5rem] font-black text-white leading-[1.04] tracking-tight mb-6 text-center"
-                style={displayFont}
+          {/* Floating stat chips */}
+          <div
+            className="absolute inset-0"
+            style={{ clipPath: "polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
+          >
+            {[
+              { label: "Enterprise Clients", val: "40+", top: "20%", right: "10%" },
+              { label: "Cloud Partners", val: "AWS / Azure / GCP", top: "50%", right: "6%" },
+              { label: "Delivery Hub", val: "Hyderabad", top: "74%", right: "14%" },
+            ].map((chip, i) => (
+              <motion.div
+                key={chip.label}
+                className="absolute rounded-2xl px-5 py-3"
+                style={{
+                  top: chip.top,
+                  right: chip.right,
+                  background: "rgba(11,17,32,0.72)",
+                  border: "1px solid rgba(232,93,4,0.38)",
+                  backdropFilter: "blur(12px)",
+                }}
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, ease, delay: 1.1 + i * 0.18 }}
               >
-                We Are a Technology<br />
-                <span className="gradient-text">Solutions Partner</span>
-              </motion.h1>
-
-              {/* Subheadline */}
-              <motion.p variants={fadeUp} className="text-lg text-white/55 leading-relaxed max-w-2xl mb-10 text-center" style={{ lineHeight: "1.75" }}>
-                Next-generation IT services from Hyderabad — offshore engineering,
-                AI/ML integration, Identity security (IAM), and payroll operations
-                for US, UK, and India markets.
-              </motion.p>
-
-              {/* CTAs */}
-              <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-4 mb-12">
-                <Link href="/services" className="glow-btn">
-                  Explore Services <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link href="/case-studies" className="glow-btn glow-btn-ghost">
-                  View Case Studies
-                </Link>
-              </motion.div>
-
-              {/* Trust signals */}
-              <motion.div variants={fadeUp} className="flex items-center justify-center gap-6 flex-wrap">
-                {[
-                  { icon: Award, label: "Accredited Firm" },
-                  { icon: Globe, label: "3 Global Markets" },
-                  { icon: Zap, label: "AI-Ready Stack" },
-                ].map(({ icon: Icon, label }) => (
-                  <div key={label} className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-lg bg-[#E85D04]/15 border border-[#E85D04]/25 flex items-center justify-center">
-                      <Icon className="w-3.5 h-3.5 text-[#E85D04]" />
-                    </div>
-                    <span className="text-xs text-white/45 font-semibold">{label}</span>
-                  </div>
-                ))}
-                <div className="h-4 w-px bg-white/15 hidden sm:block" />
-                <div className="flex items-center gap-4">
-                  <span className="text-[10px] text-white/25 uppercase tracking-widest">Follow us</span>
-                  {[
-                    { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/nexeratech-solutions/" },
-                    { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/nexeratechsolutions/" },
-                    { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/NexeraTechSolutions" },
-                  ].map(({ icon: Icon, label, href }) => (
-                    <a
-                      key={label}
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={label}
-                      className="text-white/30 hover:text-[#E85D04] transition-colors duration-200"
-                    >
-                      <Icon className="w-4 h-4" />
-                    </a>
-                  ))}
+                <div className="text-xl font-extrabold text-white leading-none">{chip.val}</div>
+                <div
+                  className="text-[10px] mt-1 font-semibold uppercase tracking-wider"
+                  style={{ color: "rgba(232,93,4,0.85)" }}
+                >
+                  {chip.label}
                 </div>
               </motion.div>
+            ))}
+          </div>
+
+          {/* Image indicator dots */}
+          <div className="absolute bottom-8 right-8 flex items-center gap-2 z-20" style={{ clipPath: "polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%)" }}>
+            {heroImages.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveHeroImg(i)}
+                className="transition-all duration-300 rounded-full"
+                style={{
+                  width: activeHeroImg === i ? "24px" : "6px",
+                  height: "6px",
+                  background: activeHeroImg === i ? "#E85D04" : "rgba(255,255,255,0.3)",
+                }}
+                aria-label={`Hero image ${i + 1}`}
+              />
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Glow orb */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute bottom-0 left-0 w-[600px] h-[500px] blur-[140px]"
+          style={{ background: "rgba(232,93,4,0.09)" }}
+        />
+
+        {/* LEFT: Content */}
+        <div className="relative z-10 mx-auto max-w-[1280px] w-full px-6 sm:px-8 lg:px-12 py-24 lg:py-0 min-h-screen flex items-center">
+          <div className="max-w-[680px] pt-24 lg:pt-28">
+
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, ease }}
+              className="flex items-center gap-3 mb-7"
+            >
+              <span
+                style={{
+                  width: "32px",
+                  height: "2px",
+                  background: "#E85D04",
+                  borderRadius: "2px",
+                  display: "inline-block",
+                  flexShrink: 0,
+                }}
+              />
+              <span
+                className="text-xs font-bold uppercase tracking-[0.24em]"
+                style={{ color: "#E85D04" }}
+              >
+                B2B Technology Partner · Hyderabad
+              </span>
+            </motion.div>
+
+            {/* ── MAIN HEADING ── the star of the show */}
+            <h1
+              className="font-black tracking-tight mb-6"
+              style={{
+                fontSize: "clamp(2.6rem, 5vw, 4.4rem)",
+                lineHeight: 1.06,
+                ...displayFont,
+              }}
+            >
+              <motion.span
+                initial={{ opacity: 0, y: 56 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease, delay: 0.18 }}
+                style={{ display: "block", color: "#FFFFFF" }}
+              >
+                We Are a Technology
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 56 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease, delay: 0.36 }}
+                style={{
+                  display: "block",
+                  background: "linear-gradient(135deg, #E85D04 0%, #FF9449 60%, #FFB577 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                Solutions Partner
+              </motion.span>
+            </h1>
+
+            {/* Divider */}
+            <motion.div
+              initial={{ scaleX: 0, originX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.85, ease, delay: 0.62 }}
+              style={{
+                height: "1.5px",
+                background: "linear-gradient(90deg, #E85D04, rgba(232,93,4,0.15))",
+                maxWidth: "480px",
+                marginBottom: "1.6rem",
+              }}
+            />
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, ease, delay: 0.78 }}
+              className="text-lg leading-[1.8] mb-8"
+              style={{ color: "rgba(255,255,255,0.68)", maxWidth: "560px" }}
+            >
+              Next-generation IT services from Hyderabad — offshore engineering,
+              AI/ML integration, Identity security (IAM), and payroll operations
+              for US, UK, and India markets.
+            </motion.p>
+
+            {/* Trust badges */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, ease, delay: 0.9 }}
+              className="flex flex-wrap items-center gap-3 mb-10"
+            >
+              {[
+                { emoji: "🏆", label: "Accredited Firm" },
+                { emoji: "🌐", label: "3 Global Markets" },
+                { emoji: "⚡", label: "AI-Ready Stack" },
+              ].map(({ emoji, label }) => (
+                <span
+                  key={label}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold"
+                  style={{
+                    background: "rgba(232,93,4,0.10)",
+                    border: "1px solid rgba(232,93,4,0.28)",
+                    color: "rgba(255,255,255,0.75)",
+                  }}
+                >
+                  <span>{emoji}</span>
+                  {label}
+                </span>
+              ))}
+            </motion.div>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, ease, delay: 1.05 }}
+              className="flex flex-wrap items-center gap-5 mb-14"
+            >
+              <Link
+                href="/services"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  background: "#E85D04",
+                  color: "#fff",
+                  fontWeight: 700,
+                  fontSize: "15px",
+                  padding: "14px 30px",
+                  borderRadius: "50px",
+                  textDecoration: "none",
+                  boxShadow: "0 10px 36px rgba(232,93,4,0.45)",
+                  letterSpacing: "0.01em",
+                }}
+              >
+                Explore Services
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </Link>
+              <Link
+                href="/contact"
+                style={{
+                  color: "rgba(255,255,255,0.72)",
+                  fontWeight: 600,
+                  fontSize: "15px",
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  padding: "14px 24px",
+                  borderRadius: "50px",
+                  border: "1px solid rgba(255,255,255,0.16)",
+                  letterSpacing: "0.01em",
+                }}
+              >
+                Start a Conversation
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </Link>
+            </motion.div>
+
+            {/* Scroll indicator */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.5, duration: 0.8 }}
+              className="flex items-center gap-3"
+            >
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+                style={{
+                  width: "1px",
+                  height: "44px",
+                  background: "linear-gradient(to bottom, rgba(232,93,4,0.9), transparent)",
+                }}
+              />
+              <span
+                className="text-[11px] uppercase tracking-[0.24em]"
+                style={{ color: "rgba(255,255,255,0.28)" }}
+              >
+                Scroll to explore
+              </span>
+            </motion.div>
+
+            {/* Social links - mobile only */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.8, duration: 0.6 }}
+              className="mt-8 flex items-center gap-4 lg:hidden"
+            >
+              <span className="text-[10px] text-white/25 uppercase tracking-widest">Follow us</span>
+              {[
+                { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/nexeratech-solutions/" },
+                { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/nexeratechsolutions/" },
+                { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/NexeraTechSolutions" },
+              ].map(({ icon: Icon, label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="text-white/30 hover:text-[#E85D04] transition-colors duration-200"
+                >
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
             </motion.div>
           </div>
         </div>
 
-        {/* Slide indicators */}
-        <div className="absolute bottom-10 right-8 flex items-center gap-3">
-          {[1, 2, 3].map((n) => (
-            <button
-              key={n}
-              className={`transition-all duration-200 ${
-                n === 1
-                  ? "w-8 h-8 rounded-full bg-[#E85D04] text-white text-xs font-bold flex items-center justify-center shadow-[0_4px_12px_rgba(232,93,4,0.40)]"
-                  : "w-2 h-2 rounded-full bg-white/20"
-              }`}
-            >
-              {n === 1 ? "01" : ""}
-            </button>
-          ))}
-        </div>
-
         {/* Bottom gradient fade */}
-        <div className="absolute inset-x-0 bottom-0 h-32 pointer-events-none" style={{ background: "linear-gradient(to top, rgba(255,255,255,0.03), transparent)" }} />
+        <div
+          className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
+          style={{ background: "linear-gradient(to top, rgba(11,17,32,0.6), transparent)" }}
+        />
       </section>
 
       {/* ─── STATS BAR ──────────────────────────────────────────── */}

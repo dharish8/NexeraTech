@@ -530,39 +530,71 @@ export default function ServiceDetailClient({ service, related }: Props) {
                 <motion.div
                   key={i}
                   variants={fadeUp}
-                  className="group relative bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-[0_20px_50px_rgba(232,93,4,0.12)] transition-all duration-300 p-7 flex flex-col overflow-hidden"
+                  className="group relative bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-[0_20px_50px_rgba(232,93,4,0.12)] transition-all duration-300 flex flex-col overflow-hidden"
                   style={{ '--accent-color': service.color } as React.CSSProperties}
                   whileHover={{ y: -6 }}
                 >
                   {/* Hover bg gradient */}
                   <span
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 rounded-2xl pointer-events-none"
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 rounded-2xl pointer-events-none z-10"
                     style={{ background: `linear-gradient(135deg, ${service.color}08 0%, transparent 60%)` }}
                   />
                   {/* Top accent */}
                   <span
-                    className="absolute inset-x-0 top-0 h-[3px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-2xl"
+                    className="absolute inset-x-0 top-0 h-[3px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-2xl z-10"
                     style={{ background: `linear-gradient(90deg, transparent, ${service.color}, transparent)` }}
                   />
                   {/* Left accent */}
                   <span
-                    className="absolute inset-y-0 left-0 w-[3px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-l-2xl"
+                    className="absolute inset-y-0 left-0 w-[3px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-l-2xl z-10"
                     style={{ background: service.color }}
                   />
-                  <div
-                    className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:scale-110 group-hover:bg-[var(--accent-color)] group-hover:text-white"
-                    style={{ background: service.color + "12", color: service.color }}
-                  >
-                    <FeatIcon className="w-6 h-6 transition-colors duration-300" />
-                  </div>
-                  <h3 className="font-bold text-[#0A1628] text-base mb-2 leading-tight group-hover:text-[#0A1628] transition-colors" style={displayFont}>
-                    {feat.title}
-                  </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed flex-1">{feat.desc}</p>
-                  {/* Bottom badge */}
-                  <div className="mt-5 pt-4 border-t border-gray-50 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full" style={{ background: service.color }} />
-                    <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: service.color }}>Included</span>
+
+                  {/* Image section */}
+                  {feat.image ? (
+                    <div className="relative w-full overflow-hidden" style={{ height: "180px" }}>
+                      <Image
+                        src={feat.image}
+                        alt={feat.title}
+                        fill
+                        className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                      {/* Gradient overlay */}
+                      <div
+                        className="absolute inset-0"
+                        style={{ background: "linear-gradient(180deg, transparent 40%, rgba(255,255,255,0.95) 100%)" }}
+                      />
+                      {/* Icon badge over image */}
+                      <div
+                        className="absolute bottom-3 left-4 w-10 h-10 rounded-xl flex items-center justify-center shadow-md transition-all duration-300 group-hover:scale-110 group-hover:bg-[var(--accent-color)] group-hover:text-white"
+                        style={{ background: "white", color: service.color }}
+                      >
+                        <FeatIcon className="w-5 h-5 transition-colors duration-300" />
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="px-7 pt-7">
+                      <div
+                        className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:scale-110 group-hover:bg-[var(--accent-color)] group-hover:text-white"
+                        style={{ background: service.color + "12", color: service.color }}
+                      >
+                        <FeatIcon className="w-6 h-6 transition-colors duration-300" />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Text content */}
+                  <div className={`flex flex-col flex-1 px-7 pb-7 ${feat.image ? "pt-4" : "pt-0"}`}>
+                    <h3 className="font-bold text-[#0A1628] text-base mb-2 leading-tight group-hover:text-[#0A1628] transition-colors" style={displayFont}>
+                      {feat.title}
+                    </h3>
+                    <p className="text-gray-500 text-sm leading-relaxed flex-1">{feat.desc}</p>
+                    {/* Bottom badge */}
+                    <div className="mt-5 pt-4 border-t border-gray-50 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full" style={{ background: service.color }} />
+                      <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: service.color }}>Included</span>
+                    </div>
                   </div>
                 </motion.div>
               );
