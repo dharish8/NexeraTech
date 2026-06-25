@@ -203,32 +203,38 @@ export const servicesDetailsMap: Record<string, ServiceDetailConfig> = {
       {
         title: "LLM Integration",
         desc: "Incorporate models from OpenAI, Anthropic Claude, and Google Gemini.",
-        iconName: "Brain"
+        iconName: "Brain",
+        image: "/ai-ml-services/LLM-Integration.webp"
       },
       {
         title: "RAG Architectures",
         desc: "Context-aware question answering engines using vector databases.",
-        iconName: "Search"
+        iconName: "Search",
+        image: "/ai-ml-services/RAG-Architectures.webp"
       },
       {
         title: "Custom ML Models",
         desc: "Supervised and unsupervised models for prediction and anomaly detection.",
-        iconName: "Cpu"
+        iconName: "Cpu",
+        image: "/ai-ml-services/Custom-ML-Models.webp"
       },
       {
         title: "Document Intelligence",
         desc: "Automated text extraction, processing, and compliance reporting.",
-        iconName: "Layers"
+        iconName: "Layers",
+        image: "/ai-ml-services/Document-Intelligence.webp"
       },
       {
         title: "Predictive Models",
         desc: "Forecasting trends, customer churn, and operational bottlenecks.",
-        iconName: "BarChart3"
+        iconName: "BarChart3",
+        image: "/ai-ml-services/Predictive--Models.webp"
       },
       {
         title: "Data Pipelines",
         desc: "ETL processes, data warehousing, and real-time streaming pipelines.",
-        iconName: "Database"
+        iconName: "Database",
+        image: "/ai-ml-services/Data-Pipelines.webp"
       }
     ],
     useCases: [
@@ -425,32 +431,38 @@ export const servicesDetailsMap: Record<string, ServiceDetailConfig> = {
       {
         title: "Senior Tech Talent",
         desc: "Access engineers with 5-15+ years of production experience.",
-        iconName: "Users"
+        iconName: "Users",
+        image: "/staff-augmentation/Senior-Tech-Talent.webp"
       },
       {
         title: "Fast Onboarding",
         desc: "Place pre-screened developers in your team within 2-4 weeks.",
-        iconName: "Zap"
+        iconName: "Zap",
+        image: "/staff-augmentation/Fast-Onboarding.webp"
       },
       {
         title: "Embedded Devs",
         desc: "Talent integrates directly into your Slack, Jira, and GitHub.",
-        iconName: "Layers"
+        iconName: "Layers",
+        image: "/staff-augmentation/Embedded-Devs.webp"
       },
       {
         title: "Flexible Scaling",
         desc: "Scale resources up or down depending on your sprint goals.",
-        iconName: "TrendingUp"
+        iconName: "TrendingUp",
+        image: "/staff-augmentation/Flexible-Scaling.webp"
       },
       {
         title: "Replacement Guarantee",
         desc: "Prompt replacement if an engineer does not meet expectations.",
-        iconName: "CheckCircle"
+        iconName: "CheckCircle",
+        image: "/staff-augmentation/Replacement-Guarantee.webp"
       },
       {
         title: "Overlapping Hours",
         desc: "Engineers operate on your timezone (EST, GMT, or IST).",
-        iconName: "Globe"
+        iconName: "Globe",
+        image: "/staff-augmentation/Overlapping=Hours.webp"
       }
     ],
     useCases: [
@@ -571,32 +583,38 @@ export const servicesDetailsMap: Record<string, ServiceDetailConfig> = {
       {
         title: "Continuous Monitoring",
         desc: "Real-time alerting and incident response to prevent downtime.",
-        iconName: "Monitor"
+        iconName: "Monitor",
+        image: "/managed-it/Continuous-Monitoring.webp"
       },
       {
         title: "Helpdesk Solutions",
         desc: "Responsive technical support for employee machines and portals.",
-        iconName: "Users"
+        iconName: "Users",
+        image: "/managed-it/Helpdesk-Solutions.webp"
       },
       {
         title: "Security Patching",
         desc: "Regular software updates and vulnerability sweeps to secure endpoints.",
-        iconName: "Shield"
+        iconName: "Shield",
+        image: "/managed-it/Security-Patching.webp"
       },
       {
         title: "Backup Verification",
         desc: "Daily cloud backups with automated testing of restore pipelines.",
-        iconName: "Database"
+        iconName: "Database",
+        image: "/managed-it/Backup-Verification.webp"
       },
       {
         title: "IT Asset Auditing",
         desc: "Track hardware lifecycles, licenses, and security compliance.",
-        iconName: "Layers"
+        iconName: "Layers",
+        image: "/managed-it/IT-Asset-Auditing.webp"
       },
       {
         title: "SLA Commitments",
         desc: "Strict response windows for priority incidents to minimize disruption.",
-        iconName: "CheckCircle"
+        iconName: "CheckCircle",
+        image: "/managed-it/SLA-Commitments.webp"
       }
     ],
     useCases: [
@@ -641,32 +659,38 @@ export const servicesDetailsMap: Record<string, ServiceDetailConfig> = {
       {
         title: "Thorough Manual Testing",
         desc: "Functional, exploratory, and regression verification across devices.",
-        iconName: "CheckCircle"
+        iconName: "CheckCircle",
+        image: "/qa-testing/Thorough-Manual-Testing.webp"
       },
       {
         title: "E2E Test Automation",
         desc: "Deploy Playwright, Cypress, or Selenium suites for fast checks.",
-        iconName: "Terminal"
+        iconName: "Terminal",
+        image: "/qa-testing/E2E-Test-Automation.webp"
       },
       {
         title: "API Testing & Mocking",
         desc: "Validate contract boundaries and response times using Postman.",
-        iconName: "Cpu"
+        iconName: "Cpu",
+        image: "/qa-testing/API-Testing-Mocking.webp"
       },
       {
         title: "Load & Stress Testing",
         desc: "Sustain user traffic spikes using k6 and JMeter audits.",
-        iconName: "BarChart3"
+        iconName: "BarChart3",
+        image: "/qa-testing/Load-Stress-Testing.webp"
       },
       {
         title: "Vulnerability Scans",
         desc: "Identify authentication leaks and code injection vectors.",
-        iconName: "Shield"
+        iconName: "Shield",
+        image: "/qa-testing/Vulnerability-Scans.webp"
       },
       {
         title: "CI/CD Test Enforcements",
         desc: "Configure automated test loops on every code commit.",
-        iconName: "Settings"
+        iconName: "Settings",
+        image: "/qa-testing/CI-CD-Test-Enforcements.webp"
       }
     ],
     useCases: [
@@ -787,32 +811,38 @@ export const servicesDetailsMap: Record<string, ServiceDetailConfig> = {
       {
         title: "Day-to-Day Bookkeeping",
         desc: "Precise ledger maintenance and automated bank reconciliations.",
-        iconName: "BarChart3"
+        iconName: "BarChart3",
+        image: "/finance-accounting-outsourcing/Day-to-Day Bookkeeping.webp"
       },
       {
         title: "Monthly MIS & Analytics",
         desc: "Granular P&L reports, balance sheets, and cash flow tracking.",
-        iconName: "Layers"
+        iconName: "Layers",
+        image: "/finance-accounting-outsourcing/Monthly-MIS-Analytics.webp"
       },
       {
         title: "Statutory GST Filings",
         desc: "Prepare and file GSTR-1 and GSTR-3B compliance returns.",
-        iconName: "CheckCircle"
+        iconName: "CheckCircle",
+        image: "/finance-accounting-outsourcing/Statutory-GST-Filings.webp"
       },
       {
         title: "TDS Processing & Returns",
         desc: "Calculate tax deductions at source and manage quarterly filings.",
-        iconName: "Banknote"
+        iconName: "Banknote",
+        image: "/finance-accounting-outsourcing/TDS-Processing-Returns.webp"
       },
       {
         title: "Audit Log Organization",
         desc: "Prepare compliant financial reports for external audits.",
-        iconName: "Shield"
+        iconName: "Shield",
+        image: "/finance-accounting-outsourcing/Audit-Log-Organization.webp"
       },
       {
         title: "Payroll Ledger Syncing",
         desc: "Sync EOR payroll data with internal accounting ledgers.",
-        iconName: "Database"
+        iconName: "Database",
+        image: "/finance-accounting-outsourcing/Payroll-Ledger-Syncing.webp"
       }
     ],
     useCases: [
@@ -857,32 +887,38 @@ export const servicesDetailsMap: Record<string, ServiceDetailConfig> = {
       {
         title: "Maturity Assessments",
         desc: "Analyze legacy system bottlenecks and design transformation roadmaps.",
-        iconName: "Search"
+        iconName: "Search",
+        image: "/digital-transformation/Maturity-Assessments.webp"
       },
       {
         title: "Legacy Modernization",
         desc: "Re-platform desktop applications into modern cloud-native systems.",
-        iconName: "Layers"
+        iconName: "Layers",
+        image: "/digital-transformation/Legacy-Modernization.webp"
       },
       {
         title: "Process Automation",
         desc: "Automate manual data entry paths using secure APIs.",
-        iconName: "Zap"
+        iconName: "Zap",
+        image: "/digital-transformation/Process-Automation.webp"
       },
       {
         title: "Data Lake Architecture",
         desc: "Consolidate scattered databases into unified analytics engines.",
-        iconName: "Database"
+        iconName: "Database",
+        image: "/digital-transformation/Data-Lake-Architecture.webp"
       },
       {
         title: "AI-Readiness Programs",
         desc: "Prepare database architectures for future ML and LLM integrations.",
-        iconName: "Brain"
+        iconName: "Brain",
+        image: "/digital-transformation/AI-Readiness-Programs.webp"
       },
       {
         title: "Change Management",
         desc: "Provide user training and documentation to ensure high adoption rates.",
-        iconName: "Users"
+        iconName: "Users",
+        image: "/digital-transformation/Change-Management.webp"
       }
     ],
     useCases: [

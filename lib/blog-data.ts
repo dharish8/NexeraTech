@@ -7,6 +7,7 @@ export interface BlogPost {
   date: string;
   readTime: string;
   color: string;
+  image?: string;
 }
 
 export const blogPosts: BlogPost[] = [
@@ -20,6 +21,7 @@ export const blogPosts: BlogPost[] = [
     date: "June 10, 2025",
     readTime: "6 min read",
     color: "#E85D04",
+    image: "/Blog/Featured-Post.webp",
   },
   {
     slug: "hipaa-compliant-cloud-architecture-aws",
@@ -31,6 +33,7 @@ export const blogPosts: BlogPost[] = [
     date: "May 28, 2025",
     readTime: "9 min read",
     color: "#0A1628",
+    image: "/Blog/Latest-articles/healthcare-tech.webp",
   },
   {
     slug: "rag-vs-finetuning-enterprise-ai",
@@ -42,6 +45,7 @@ export const blogPosts: BlogPost[] = [
     date: "May 15, 2025",
     readTime: "8 min read",
     color: "#E85D04",
+    image: "/Blog/Latest-articles/AIML.webp",
   },
   {
     slug: "okta-implementation-mistakes",
@@ -53,6 +57,7 @@ export const blogPosts: BlogPost[] = [
     date: "May 5, 2025",
     readTime: "7 min read",
     color: "#E85D04",
+    image: "/Blog/Latest-articles/IAM-Security.webp",
   },
   {
     slug: "india-payroll-compliance-guide-2025",
@@ -64,6 +69,7 @@ export const blogPosts: BlogPost[] = [
     date: "April 20, 2025",
     readTime: "10 min read",
     color: "#0A1628",
+    image: "/Blog/Latest-articles/Payroll-EOR.webp",
   },
   {
     slug: "zero-trust-architecture-mid-market",
@@ -75,5 +81,6 @@ export const blogPosts: BlogPost[] = [
     date: "April 8, 2025",
     readTime: "8 min read",
     color: "#0A1628",
+    image: "/Blog/Latest-articles/Cybersecurity.webp",
   },
 ];

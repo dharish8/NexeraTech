@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Clock, User } from "lucide-react";
 import { blogPosts } from "@/lib/blog-data";
 
@@ -27,7 +28,7 @@ export default function BlogClient() {
               <span className="text-white/25">/</span>
               <span className="text-[#E85D04] font-medium">Blog</span>
             </motion.div>
-            <motion.span variants={fadeUp} className="inline-block px-4 py-1.5 bg-[#FFF4EC] text-[#E85D04] text-xs font-bold uppercase tracking-widest rounded-full mb-6">Insights & Expertise</motion.span>
+            <motion.span variants={fadeUp} className="inline-block px-4 py-1.5 bg-[#FFF4EC] text-[#E85D04] text-xs font-bold uppercase tracking-widest rounded-full mb-6">Insights &amp; Expertise</motion.span>
             <motion.h1 variants={fadeUp} className="text-5xl lg:text-6xl font-bold text-white mb-6">
               NexeraTech <span className="text-[#E85D04]">Blog</span>
             </motion.h1>
@@ -52,9 +53,10 @@ export default function BlogClient() {
             <span className="eyebrow-tag"><span className="dot" />Featured Post</span>
           </motion.div>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <div className="group bg-white rounded-3xl border border-[rgba(15,23,42,0.08)] hover:border-[#E85D04]/40 p-10 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-[0_24px_56px_rgba(15,23,42,0.12)]">
-              <div className="grid lg:grid-cols-2 gap-8 items-center">
-                <div>
+            <div className="group bg-white rounded-3xl border border-[rgba(15,23,42,0.08)] hover:border-[#E85D04]/40 overflow-hidden transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-[0_24px_56px_rgba(15,23,42,0.12)]">
+              <div className="grid lg:grid-cols-2 gap-0 items-stretch">
+                {/* Text side */}
+                <div className="p-10 flex flex-col justify-center">
                   <div className="flex flex-wrap gap-2 mb-5">
                     <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#E85D04] text-white">{featured.category}</span>
                     <span className="flex items-center gap-1 text-sm text-gray-500">
@@ -63,7 +65,7 @@ export default function BlogClient() {
                   </div>
                   <h2 className="text-3xl font-bold text-[#0A1628] mb-4 group-hover:text-[#E85D04] transition-colors leading-tight">{featured.title}</h2>
                   <p className="text-gray-500 leading-relaxed mb-6">{featured.excerpt}</p>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-4 mb-6">
                     <div className="flex items-center gap-2">
                       <div className="w-8 h-8 rounded-full bg-[#E85D04] flex items-center justify-center">
                         <User className="w-4 h-4 text-white" />
@@ -72,15 +74,34 @@ export default function BlogClient() {
                     </div>
                     <span className="text-sm text-gray-400">{featured.date}</span>
                   </div>
+                  <div className="flex items-center gap-1 text-sm font-semibold text-[#E85D04] group-hover:gap-2 transition-all">
+                    Read article <ArrowRight className="w-4 h-4" />
+                  </div>
                 </div>
-                <div className="relative h-56 bg-gradient-to-br from-[#E85D04]/20 to-[#F3722C]/10 rounded-2xl flex items-center justify-center border border-[#E85D04]/20">
-                  <div className="text-center">
-                    <div className="text-5xl mb-3">📰</div>
-                    <p className="text-sm text-[#E85D04] font-medium">Featured Article</p>
-                  </div>
-                  <div className="absolute top-4 right-4 flex items-center gap-1 text-sm text-[#E85D04] font-semibold group-hover:gap-2 transition-all">
-                    Read <ArrowRight className="w-4 h-4" />
-                  </div>
+                {/* Image side */}
+                <div className="relative min-h-[280px] lg:min-h-0 overflow-hidden">
+                  {featured.image ? (
+                    <>
+                      <Image
+                        src={featured.image}
+                        alt={featured.title}
+                        fill
+                        className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-white/10" />
+                      <div className="absolute top-4 right-4 flex items-center gap-1 text-sm text-white font-semibold bg-[#E85D04] px-3 py-1.5 rounded-full">
+                        Featured <ArrowRight className="w-3.5 h-3.5" />
+                      </div>
+                    </>
+                  ) : (
+                    <div className="h-full flex items-center justify-center bg-gradient-to-br from-[#E85D04]/20 to-[#F3722C]/10 border-l border-[#E85D04]/20">
+                      <div className="text-center">
+                        <div className="text-5xl mb-3">📰</div>
+                        <p className="text-sm text-[#E85D04] font-medium">Featured Article</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -97,19 +118,42 @@ export default function BlogClient() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {rest.map((post) => (
               <motion.div key={post.slug} variants={fadeUp}>
-                <div className="group bg-white rounded-2xl border border-gray-100 card-hover overflow-hidden h-full cursor-pointer">
-                  {/* Color strip */}
-                  <div className="h-1" style={{ background: post.color }} />
-                  {/* Image placeholder */}
-                  <div className="h-44 flex items-center justify-center" style={{ background: post.color + "10" }}>
-                    <div className="text-center">
-                      <span className="text-4xl block mb-2">📝</span>
-                      <span className="px-3 py-1 rounded-full text-xs font-semibold" style={{ background: post.color + "20", color: post.color }}>{post.category}</span>
-                    </div>
+                <div className="group bg-white rounded-2xl border border-gray-100 card-hover overflow-hidden h-full cursor-pointer flex flex-col">
+                  {/* Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    {post.image ? (
+                      <>
+                        <Image
+                          src={post.image}
+                          alt={post.title}
+                          fill
+                          className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                        <span
+                          className="absolute bottom-3 left-3 px-2.5 py-1 rounded-full text-xs font-semibold text-white"
+                          style={{ background: post.color }}
+                        >
+                          {post.category}
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        {/* Color strip + fallback */}
+                        <div className="h-1" style={{ background: post.color }} />
+                        <div className="h-full flex items-center justify-center" style={{ background: post.color + "10" }}>
+                          <div className="text-center">
+                            <span className="text-4xl block mb-2">📝</span>
+                            <span className="px-3 py-1 rounded-full text-xs font-semibold" style={{ background: post.color + "20", color: post.color }}>{post.category}</span>
+                          </div>
+                        </div>
+                      </>
+                    )}
                   </div>
-                  <div className="p-6">
+                  <div className="p-6 flex flex-col flex-1">
                     <h3 className="font-bold text-[#0A1628] text-lg mb-2 group-hover:text-[#E85D04] transition-colors leading-snug">{post.title}</h3>
-                    <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-3">{post.excerpt}</p>
+                    <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-3 flex-1">{post.excerpt}</p>
                     <div className="flex items-center justify-between">
                       <span className="text-xs text-gray-400 flex items-center gap-1">
                         <Clock className="w-3 h-3" />{post.readTime}

@@ -1,11 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Leaf, Users, Globe, BookOpen, CheckCircle, Heart, Sprout, TreePine } from "lucide-react";
+import { ArrowRight, Leaf, Users, Globe, BookOpen, CheckCircle, Heart, Sprout, TreePine, Star, Shield, Handshake } from "lucide-react";
 
-/* ─── Ishara green palette ────────────────────────────────────────────────── */
+/* ─── IShara green palette ────────────────────────────────────────────────── */
 const G = {
   dark:    "#1A3A1A",  // deepest forest
   deep:    "#2D5A27",  // primary brand green
@@ -28,7 +29,6 @@ const scaleIn = {
   visible: { opacity: 1, scale: 1, transition: { duration: 0.55, ease: "easeOut" as const } },
 };
 
-/* ─── Reusable leaf decoration ───────────────────────────────────────────── */
 function LeafDot({ className = "" }: { className?: string }) {
   return (
     <span
@@ -38,157 +38,389 @@ function LeafDot({ className = "" }: { className?: string }) {
   );
 }
 
+/* ─── Floating particle ──────────────────────────────────────────────────── */
+function FloatingLeaf({ x, y, delay, size = 24 }: { x: string; y: string; delay: number; size?: number }) {
+  return (
+    <motion.div
+      className="absolute pointer-events-none"
+      style={{ left: x, top: y }}
+      animate={{ y: [-8, 8, -8], rotate: [-5, 5, -5], opacity: [0.12, 0.25, 0.12] }}
+      transition={{ duration: 5 + delay, repeat: Infinity, ease: "easeInOut", delay }}
+    >
+      <Leaf style={{ width: size, height: size, color: G.light }} />
+    </motion.div>
+  );
+}
+
 export default function CSRClient() {
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
+
   return (
     <div className="overflow-hidden" style={{ fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif" }}>
 
       {/* ══════════════════════════ HERO ════════════════════════════════════ */}
       <section
-        className="relative pt-32 pb-24 overflow-hidden"
-        style={{
-          background: `linear-gradient(160deg, ${G.dark} 0%, ${G.deep} 55%, #1E4020 100%)`,
-        }}
+        ref={heroRef}
+        className="relative min-h-screen flex items-center overflow-hidden"
+        style={{ background: `linear-gradient(165deg, #0A1F0A 0%, ${G.dark} 30%, ${G.deep} 65%, #1E4A20 100%)` }}
       >
-        {/* Decorative organic circles */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Parallax background texture */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none"
+          style={{ y: bgY }}
+        >
+          {/* Organic radial glows */}
           <div
-            className="absolute -top-40 -right-40 w-[700px] h-[700px] rounded-full opacity-10"
-            style={{ background: `radial-gradient(circle, ${G.light} 0%, transparent 70%)` }}
+            className="absolute -top-40 -right-40 w-[900px] h-[900px] rounded-full"
+            style={{ background: `radial-gradient(circle at 40% 40%, ${G.light}22 0%, transparent 65%)` }}
           />
           <div
-            className="absolute -bottom-20 -left-20 w-[500px] h-[500px] rounded-full opacity-8"
-            style={{ background: `radial-gradient(circle, ${G.mid} 0%, transparent 70%)` }}
+            className="absolute -bottom-60 -left-40 w-[700px] h-[700px] rounded-full"
+            style={{ background: `radial-gradient(circle at 60% 60%, ${G.mid}18 0%, transparent 65%)` }}
           />
-          {/* Subtle dot grid */}
           <div
-            className="absolute inset-0 opacity-15"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[600px] rounded-full"
+            style={{ background: `radial-gradient(ellipse, ${G.fresh}08 0%, transparent 70%)`, filter: "blur(60px)" }}
+          />
+
+          {/* Dot grid */}
+          <div
+            className="absolute inset-0"
             style={{
-              backgroundImage: `radial-gradient(circle, ${G.light} 1px, transparent 1px)`,
-              backgroundSize: "36px 36px",
+              backgroundImage: `radial-gradient(circle, rgba(125,196,110,0.12) 1px, transparent 1px)`,
+              backgroundSize: "40px 40px",
             }}
           />
-          {/* Wavy leaf-like decorative lines */}
-          <svg className="absolute right-0 top-0 w-[480px] h-[480px] opacity-6" viewBox="0 0 480 480" fill="none">
-            <circle cx="240" cy="240" r="200" stroke={G.light} strokeWidth="1" strokeDasharray="8 12" />
-            <circle cx="240" cy="240" r="150" stroke={G.light} strokeWidth="0.5" strokeDasharray="4 8" />
-            <circle cx="240" cy="240" r="100" stroke={G.light} strokeWidth="0.5" />
+
+          {/* Dashed ring decorations */}
+          <svg className="absolute right-[-60px] top-[-60px] w-[640px] h-[640px] opacity-8" viewBox="0 0 640 640" fill="none">
+            <circle cx="320" cy="320" r="280" stroke={G.light} strokeWidth="1" strokeDasharray="10 16" />
+            <circle cx="320" cy="320" r="210" stroke={G.light} strokeWidth="0.6" strokeDasharray="5 10" />
+            <circle cx="320" cy="320" r="140" stroke={G.light} strokeWidth="0.4" />
           </svg>
-        </div>
+          <svg className="absolute left-[-80px] bottom-[-80px] w-[440px] h-[440px] opacity-5" viewBox="0 0 440 440" fill="none">
+            <circle cx="220" cy="220" r="200" stroke={G.light} strokeWidth="1" strokeDasharray="8 12" />
+            <circle cx="220" cy="220" r="150" stroke={G.light} strokeWidth="0.5" strokeDasharray="4 8" />
+          </svg>
+        </motion.div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Breadcrumb */}
-          <motion.div
-            initial="hidden" animate="visible" variants={stagger}
-            className="flex flex-col items-center text-center"
-          >
-            <motion.div variants={fadeUp} className="flex items-center gap-2 mb-8 text-sm">
-              <Link href="/" className="text-white/40 hover:text-white transition-colors">Home</Link>
-              <span className="text-white/25">/</span>
-              <span className="font-medium" style={{ color: G.light }}>IShara Foundation</span>
-            </motion.div>
+        {/* Floating leaf particles */}
+        <FloatingLeaf x="8%" y="20%" delay={0} size={20} />
+        <FloatingLeaf x="92%" y="15%" delay={1.5} size={16} />
+        <FloatingLeaf x="5%" y="70%" delay={2.8} size={24} />
+        <FloatingLeaf x="88%" y="65%" delay={0.7} size={18} />
+        <FloatingLeaf x="50%" y="8%" delay={3.2} size={14} />
+        <FloatingLeaf x="75%" y="82%" delay={1.9} size={20} />
 
-            {/* Logo */}
-            <motion.div
-              variants={scaleIn}
-              className="mb-10 relative"
-            >
-              <div
-                className="relative inline-flex items-center justify-center"
+        {/* Main hero content */}
+        <motion.div
+          className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24"
+          style={{ y: textY }}
+        >
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+            {/* ── LEFT COLUMN ────────────────────────────────────────────── */}
+            <motion.div initial="hidden" animate="visible" variants={stagger}>
+              {/* Breadcrumb */}
+              <motion.div variants={fadeUp} className="flex items-center gap-2 mb-10 text-sm">
+                <Link href="/" className="text-white/35 hover:text-white transition-colors">Home</Link>
+                <span className="text-white/20">/</span>
+                <span className="font-medium" style={{ color: G.light }}>IShara Foundation</span>
+              </motion.div>
+
+              {/* Eyebrow pill */}
+              <motion.span
+                variants={fadeUp}
+                className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-xs font-bold uppercase tracking-[0.18em] mb-8"
                 style={{
-                  background: "rgba(255,255,255,0.95)",
-                  borderRadius: "2rem",
-                  padding: "1.5rem 2.5rem",
-                  boxShadow: `0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.15)`,
+                  background: "rgba(125,196,110,0.12)",
+                  border: `1px solid rgba(125,196,110,0.35)`,
+                  color: G.light,
+                  backdropFilter: "blur(8px)",
                 }}
               >
-                <Image
-                  src="/IShara-Foundation/ISHARA_ FOUNDATION_LOGO.webp"
-                  alt="IShara Foundation Logo"
-                  width={320}
-                  height={100}
-                  className="object-contain"
-                  priority
-                />
-              </div>
-              {/* Floating glow ring */}
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60" style={{ background: G.fresh }} />
+                  <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: G.fresh }} />
+                </span>
+                NexeraTech&apos;s CSR Initiative
+              </motion.span>
+
+              {/* Heading */}
+              <motion.h1
+                variants={fadeUp}
+                className="text-6xl lg:text-7xl xl:text-[5rem] font-extrabold text-white leading-[1.03] tracking-tight mb-6"
+              >
+                Technology{" "}
+                <br />
+                for{" "}
+                <span
+                  style={{
+                    background: `linear-gradient(120deg, ${G.light} 0%, #B8E8A0 40%, ${G.pale} 100%)`,
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  Meaningful
+                </span>
+                {" "}
+                <br />
+                Social Change
+              </motion.h1>
+
+              {/* Accent divider */}
+              <motion.div
+                variants={fadeUp}
+                className="mb-8"
+                style={{ height: "2px", background: `linear-gradient(90deg, ${G.mid}, transparent)`, maxWidth: "320px" }}
+              />
+
+              <motion.p
+                variants={fadeUp}
+                className="text-lg text-white/60 leading-[1.8] mb-10 max-w-lg"
+              >
+                NexeraTech Solutions partners with{" "}
+                <span className="font-semibold" style={{ color: G.light }}>IShara Foundation</span>{" "}
+                to advance digital inclusion, education, and community development across India — because social impact is one of our core values.
+              </motion.p>
+
+              {/* CTA buttons */}
+              <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 mb-12">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-bold text-sm transition-all duration-300 hover:brightness-110"
+                  style={{
+                    background: `linear-gradient(135deg, ${G.mid} 0%, ${G.fresh} 100%)`,
+                    boxShadow: `0 8px 32px rgba(61,122,53,0.50)`,
+                  }}
+                >
+                  Get Involved <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  href="#about-ishara"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-sm transition-all duration-300"
+                  style={{
+                    border: "1.5px solid rgba(125,196,110,0.35)",
+                    color: G.light,
+                  }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(125,196,110,0.10)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
+                >
+                  Learn More
+                </Link>
+              </motion.div>
+
+              {/* Trust strip */}
+              <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-6">
+                {[
+                  { icon: Shield, text: "Committed CSR Partner" },
+                  { icon: Heart, text: "Social Impact Core Value" },
+                  { icon: Globe, text: "Digital Inclusion Focus" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <item.icon className="w-4 h-4" style={{ color: G.light }} />
+                    <span className="text-sm font-medium" style={{ color: "rgba(255,255,255,0.55)" }}>{item.text}</span>
+                  </div>
+                ))}
+              </motion.div>
+            </motion.div>
+
+            {/* ── RIGHT COLUMN ───────────────────────────────────────────── */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+              className="relative hidden lg:block"
+            >
+              {/* Main card */}
               <div
-                className="absolute inset-0 rounded-3xl -z-10 blur-2xl opacity-40 scale-110"
-                style={{ background: G.light }}
+                className="relative rounded-[2rem] overflow-hidden"
+                style={{
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(255,255,255,0.10)",
+                  backdropFilter: "blur(20px)",
+                  boxShadow: "0 40px 100px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06)",
+                }}
+              >
+                {/* Logo display area */}
+                <div
+                  className="px-10 pt-10 pb-8 flex flex-col items-center"
+                  style={{ background: "rgba(255,255,255,0.02)" }}
+                >
+                  {/* Logo container */}
+                  <motion.div
+                    animate={{ y: [0, -6, 0] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                    className="relative"
+                  >
+                    <div
+                      className="relative rounded-2xl px-8 py-5"
+                      style={{
+                        background: "rgba(255,255,255,0.97)",
+                        boxShadow: `0 20px 60px rgba(0,0,0,0.35), 0 0 0 1px ${G.light}20`,
+                      }}
+                    >
+                      <Image
+                        src="/IShara-Foundation/ISHARA_ FOUNDATION_LOGO.webp"
+                        alt="IShara Foundation Logo"
+                        width={280}
+                        height={88}
+                        className="object-contain"
+                        priority
+                      />
+                    </div>
+                    {/* Glow behind logo */}
+                    <div
+                      className="absolute inset-0 rounded-2xl -z-10 blur-3xl scale-110"
+                      style={{ background: G.light, opacity: 0.18 }}
+                    />
+                  </motion.div>
+
+                  <h3 className="text-xl font-bold text-white mt-6 mb-1">IShara Foundation</h3>
+                  <p className="text-sm font-semibold" style={{ color: G.light }}>NexeraTech&apos;s CSR Partner</p>
+                </div>
+
+                {/* Divider */}
+                <div style={{ height: "1px", background: "rgba(255,255,255,0.07)" }} />
+
+                {/* Stats grid */}
+                <div className="grid grid-cols-3 divide-x" style={{ borderColor: "rgba(255,255,255,0.07)" }}>
+                  {[
+                    { icon: "🌱", value: "Social", label: "Core Value" },
+                    { icon: "💻", value: "Digital", label: "Inclusion" },
+                    { icon: "🤝", value: "Long-term", label: "Partnership" },
+                  ].map((s, i) => (
+                    <div
+                      key={i}
+                      className="py-5 px-4 text-center"
+                      style={{ borderColor: "rgba(255,255,255,0.07)" }}
+                    >
+                      <span className="text-2xl block mb-1">{s.icon}</span>
+                      <p className="text-xs font-bold text-white leading-none">{s.value}</p>
+                      <p className="text-[10px] mt-1" style={{ color: "rgba(255,255,255,0.40)" }}>{s.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Focus tags */}
+                <div className="px-8 py-6 flex flex-wrap gap-2 justify-center">
+                  {["Digital Inclusion", "Education", "Community Dev", "Tech Skills", "Volunteering"].map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1.5 rounded-full text-xs font-semibold"
+                      style={{ background: "rgba(125,196,110,0.12)", color: G.light, border: `1px solid rgba(125,196,110,0.25)` }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Bottom CTA strip */}
+                <div
+                  className="px-8 py-5 flex items-center justify-between"
+                  style={{
+                    background: `linear-gradient(135deg, ${G.deep}80, ${G.mid}60)`,
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                  }}
+                >
+                  <span className="text-sm font-medium text-white/70">
+                    A commitment to social change
+                  </span>
+                  <span
+                    className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full"
+                    style={{ background: "rgba(125,196,110,0.2)", color: G.light }}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: G.fresh }} />
+                    Active
+                  </span>
+                </div>
+              </div>
+
+              {/* Floating badge top-right */}
+              <motion.div
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute -top-5 -right-5 rounded-2xl px-4 py-3 flex items-center gap-2.5"
+                style={{
+                  background: "rgba(11,31,11,0.85)",
+                  border: `1px solid ${G.light}40`,
+                  backdropFilter: "blur(12px)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
+                }}
+              >
+                <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: `${G.fresh}22` }}>
+                  <Star className="w-4 h-4" style={{ color: G.gold }} />
+                </div>
+                <div>
+                  <p className="text-white text-xs font-bold leading-none">CSR Certified</p>
+                  <p className="text-[10px] mt-0.5 font-medium" style={{ color: G.light }}>IShara Foundation</p>
+                </div>
+              </motion.div>
+
+              {/* Floating badge bottom-left */}
+              <motion.div
+                animate={{ y: [0, 5, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                className="absolute -bottom-5 -left-5 rounded-2xl px-4 py-3 flex items-center gap-2.5"
+                style={{
+                  background: "rgba(11,31,11,0.85)",
+                  border: `1px solid ${G.light}30`,
+                  backdropFilter: "blur(12px)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
+                }}
+              >
+                <span className="text-2xl">🌱</span>
+                <div>
+                  <p className="text-white text-xs font-bold leading-none">Social Impact</p>
+                  <p className="text-[10px] mt-0.5" style={{ color: G.light }}>Core Company Value</p>
+                </div>
+              </motion.div>
+
+              {/* Ambient glow */}
+              <div
+                className="absolute -inset-8 rounded-[3rem] -z-10"
+                style={{ background: `${G.fresh}08`, filter: "blur(40px)" }}
               />
             </motion.div>
 
-            {/* Eyebrow pill */}
-            <motion.span
-              variants={fadeUp}
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-6"
-              style={{
-                background: "rgba(125,196,110,0.18)",
-                border: `1px solid rgba(125,196,110,0.4)`,
-                color: G.light,
-              }}
-            >
-              <LeafDot />
-              NexeraTech&apos;s CSR Initiative
-            </motion.span>
-
-            <motion.h1
-              variants={fadeUp}
-              className="text-5xl lg:text-7xl font-bold text-white mb-5 leading-tight"
-              style={{ letterSpacing: "-0.02em" }}
-            >
-              Technology for{" "}
-              <span
-                style={{
-                  background: `linear-gradient(135deg, ${G.light} 0%, ${G.pale} 100%)`,
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                Meaningful
-              </span>{" "}
-              <br className="hidden lg:block" />Social Change
-            </motion.h1>
-
-            <motion.p
-              variants={fadeUp}
-              className="text-xl text-white/65 max-w-2xl mx-auto leading-relaxed"
-            >
-              NexeraTech Solutions partners with IShara Foundation to advance digital inclusion,
-              education, and community development across India.
-            </motion.p>
-
-            {/* CTA row */}
-            <motion.div variants={fadeUp} className="flex items-center gap-4 mt-10">
-              <Link href="/contact" className="glow-btn" style={{
-                background: `linear-gradient(135deg, ${G.mid} 0%, ${G.fresh} 60%, ${G.mid} 100%)`,
-                backgroundSize: "200% auto",
-                boxShadow: `0 8px 28px rgba(61,122,53,0.50)`,
-              }}>
-                Get Involved <ArrowRight className="w-4 h-4" />
-              </Link>
-              <button
-                className="glow-btn-ghost"
-                style={{ border: `1px solid rgba(125,196,110,0.35)`, color: G.light }}
-              >
-                Learn More
-              </button>
-            </motion.div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
 
         {/* Bottom fade */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
+          className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-10"
           style={{ background: `linear-gradient(to bottom, transparent, ${G.cream})` }}
         />
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.6, duration: 0.6 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
+        >
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.25)" }}>Scroll</span>
+          <motion.div
+            animate={{ y: [0, 7, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="h-8 w-5 rounded-full flex items-start justify-center pt-1.5"
+            style={{ border: `1px solid rgba(125,196,110,0.25)` }}
+          >
+            <div className="h-1.5 w-1.5 rounded-full" style={{ background: G.light, opacity: 0.5 }} />
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* ══════════════════════ STAT STRIP ══════════════════════════════════ */}
-      <section style={{ background: G.cream }} className="py-16 relative z-10">
+      <section id="about-ishara" style={{ background: G.cream }} className="py-16 relative z-10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 divide-y sm:divide-y-0 sm:divide-x"
-            style={{ borderRadius: "1.5rem", border: `1px solid ${G.pale}`, background: "#fff", boxShadow: "0 4px 32px rgba(45,90,39,0.08)" }}
+          <div
+            className="grid grid-cols-1 sm:grid-cols-3 gap-0 divide-y sm:divide-y-0 sm:divide-x"
+            style={{ borderRadius: "1.5rem", border: `1px solid ${G.pale}`, background: "#fff", boxShadow: "0 4px 32px rgba(45,90,39,0.08)", borderColor: G.pale }}
           >
             {[
               { icon: "🌱", value: "Social Impact",       label: "Our Core Value" },
@@ -247,7 +479,6 @@ export default function CSRClient() {
                 </p>
               </motion.div>
 
-              {/* Leaf-styled bullet points */}
               <motion.ul variants={stagger} className="mt-8 space-y-3">
                 {[
                   "Technology-first approach to social challenges",
@@ -276,7 +507,6 @@ export default function CSRClient() {
                   boxShadow: `0 24px 60px rgba(45,90,39,0.35)`,
                 }}
               >
-                {/* Background pattern */}
                 <div
                   className="absolute inset-0 opacity-10"
                   style={{
@@ -289,7 +519,6 @@ export default function CSRClient() {
                 </div>
 
                 <div className="relative z-10 text-center">
-                  {/* Logo on dark bg */}
                   <div
                     className="inline-flex items-center justify-center mb-8 rounded-2xl px-6 py-4"
                     style={{ background: "rgba(255,255,255,0.95)" }}
@@ -310,7 +539,6 @@ export default function CSRClient() {
                     and community development are available to everyone — regardless of socioeconomic background.
                   </p>
 
-                  {/* Small stat pills */}
                   <div className="flex gap-3 justify-center mt-8 flex-wrap">
                     {["Digital Inclusion", "Education", "Community"].map((tag) => (
                       <span
@@ -402,7 +630,6 @@ export default function CSRClient() {
         className="section-py relative overflow-hidden"
         style={{ background: `linear-gradient(160deg, ${G.dark} 0%, ${G.deep} 100%)` }}
       >
-        {/* Decorative blob */}
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] rounded-full pointer-events-none"
           style={{ background: `rgba(78,153,68,0.12)`, filter: "blur(100px)" }}
@@ -504,7 +731,6 @@ export default function CSRClient() {
               both the capability and the responsibility to do so.
             </motion.p>
 
-            {/* Four values visual */}
             <motion.div variants={stagger} className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
               {[
                 { label: "Innovation First",     icon: "💡", active: false },
@@ -562,7 +788,6 @@ export default function CSRClient() {
         />
 
         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-          {/* Logo centred */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -610,7 +835,7 @@ export default function CSRClient() {
           >
             <Link
               href="/contact"
-              className="glow-btn"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-bold text-sm transition-all duration-300 hover:brightness-110"
               style={{
                 background: `linear-gradient(135deg, ${G.mid} 0%, ${G.fresh} 60%, ${G.mid} 100%)`,
                 backgroundSize: "200% auto",
