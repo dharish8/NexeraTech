@@ -64,81 +64,65 @@ export default function CSRClient() {
       {/* ══════════════════════════ HERO ════════════════════════════════════ */}
       <section
         ref={heroRef}
-        className="relative min-h-screen flex items-center overflow-hidden"
-        style={{ background: `linear-gradient(165deg, #0A1F0A 0%, ${G.dark} 30%, ${G.deep} 65%, #1E4A20 100%)` }}
+        className="relative min-h-screen flex items-center overflow-hidden py-24 sm:py-32"
+        style={{ background: `linear-gradient(180deg, #F4F9F2 0%, #FFFFFF 100%)` }}
       >
-        {/* Parallax background texture */}
+        {/* Parallax background patterns and glows */}
         <motion.div
           className="absolute inset-0 pointer-events-none"
           style={{ y: bgY }}
         >
-          {/* Organic radial glows */}
+          {/* Natural organic radial glows */}
           <div
-            className="absolute -top-40 -right-40 w-[900px] h-[900px] rounded-full"
-            style={{ background: `radial-gradient(circle at 40% 40%, ${G.light}22 0%, transparent 65%)` }}
+            className="absolute top-0 right-0 w-[800px] h-[800px] rounded-full"
+            style={{ background: `radial-gradient(circle, ${G.pale}60 0%, transparent 70%)` }}
           />
           <div
-            className="absolute -bottom-60 -left-40 w-[700px] h-[700px] rounded-full"
-            style={{ background: `radial-gradient(circle at 60% 60%, ${G.mid}18 0%, transparent 65%)` }}
-          />
-          <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[600px] rounded-full"
-            style={{ background: `radial-gradient(ellipse, ${G.fresh}08 0%, transparent 70%)`, filter: "blur(60px)" }}
+            className="absolute -bottom-20 -left-20 w-[600px] h-[600px] rounded-full"
+            style={{ background: `radial-gradient(circle, ${G.pale}40 0%, transparent 70%)` }}
           />
 
-          {/* Dot grid */}
+          {/* Subtle dot grid */}
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `radial-gradient(circle, rgba(125,196,110,0.12) 1px, transparent 1px)`,
-              backgroundSize: "40px 40px",
+              backgroundImage: `radial-gradient(circle, rgba(78,153,68,0.06) 1.5px, transparent 1.5px)`,
+              backgroundSize: "32px 32px",
             }}
           />
 
-          {/* Dashed ring decorations */}
-          <svg className="absolute right-[-60px] top-[-60px] w-[640px] h-[640px] opacity-8" viewBox="0 0 640 640" fill="none">
-            <circle cx="320" cy="320" r="280" stroke={G.light} strokeWidth="1" strokeDasharray="10 16" />
-            <circle cx="320" cy="320" r="210" stroke={G.light} strokeWidth="0.6" strokeDasharray="5 10" />
-            <circle cx="320" cy="320" r="140" stroke={G.light} strokeWidth="0.4" />
-          </svg>
-          <svg className="absolute left-[-80px] bottom-[-80px] w-[440px] h-[440px] opacity-5" viewBox="0 0 440 440" fill="none">
-            <circle cx="220" cy="220" r="200" stroke={G.light} strokeWidth="1" strokeDasharray="8 12" />
-            <circle cx="220" cy="220" r="150" stroke={G.light} strokeWidth="0.5" strokeDasharray="4 8" />
+          {/* Clean decorative organic line overlays */}
+          <svg className="absolute right-[-40px] top-[-40px] w-[500px] h-[500px] opacity-[0.15]" viewBox="0 0 500 500" fill="none">
+            <circle cx="250" cy="250" r="220" stroke={G.deep} strokeWidth="1" strokeDasharray="8 12" />
+            <circle cx="250" cy="250" r="170" stroke={G.deep} strokeWidth="0.6" strokeDasharray="4 8" />
+            <circle cx="250" cy="250" r="120" stroke={G.deep} strokeWidth="0.4" />
           </svg>
         </motion.div>
 
-        {/* Floating leaf particles */}
-        <FloatingLeaf x="8%" y="20%" delay={0} size={20} />
-        <FloatingLeaf x="92%" y="15%" delay={1.5} size={16} />
-        <FloatingLeaf x="5%" y="70%" delay={2.8} size={24} />
-        <FloatingLeaf x="88%" y="65%" delay={0.7} size={18} />
-        <FloatingLeaf x="50%" y="8%" delay={3.2} size={14} />
-        <FloatingLeaf x="75%" y="82%" delay={1.9} size={20} />
-
         {/* Main hero content */}
         <motion.div
-          className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24"
+          className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
           style={{ y: textY }}
         >
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-12 items-center">
 
             {/* ── LEFT COLUMN ────────────────────────────────────────────── */}
             <motion.div initial="hidden" animate="visible" variants={stagger}>
               {/* Breadcrumb */}
-              <motion.div variants={fadeUp} className="flex items-center gap-2 mb-10 text-sm">
-                <Link href="/" className="text-white/35 hover:text-white transition-colors">Home</Link>
-                <span className="text-white/20">/</span>
-                <span className="font-medium" style={{ color: G.light }}>IShara Foundation</span>
+              <motion.div variants={fadeUp} className="flex items-center gap-2 mb-8 text-sm">
+                <Link href="/" className="text-stone-400 hover:text-emerald-800 transition-colors">Home</Link>
+                <span className="text-stone-300">/</span>
+                <span className="font-semibold text-emerald-800">IShara Foundation</span>
               </motion.div>
 
               {/* Eyebrow pill */}
               <motion.span
                 variants={fadeUp}
-                className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-xs font-bold uppercase tracking-[0.18em] mb-8"
+                className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-xs font-bold uppercase tracking-[0.15em] mb-6"
                 style={{
-                  background: "rgba(125,196,110,0.12)",
-                  border: `1px solid rgba(125,196,110,0.35)`,
-                  color: G.light,
+                  background: "rgba(45,90,39,0.06)",
+                  border: "1px solid rgba(45,90,39,0.15)",
+                  color: G.deep,
                   backdropFilter: "blur(8px)",
                 }}
               >
@@ -152,14 +136,14 @@ export default function CSRClient() {
               {/* Heading */}
               <motion.h1
                 variants={fadeUp}
-                className="text-6xl lg:text-7xl xl:text-[5rem] font-extrabold text-white leading-[1.03] tracking-tight mb-6"
+                className="text-5xl sm:text-6xl lg:text-7xl font-black text-stone-900 leading-[1.08] tracking-tight mb-6"
               >
                 Technology{" "}
                 <br />
                 for{" "}
                 <span
                   style={{
-                    background: `linear-gradient(120deg, ${G.light} 0%, #B8E8A0 40%, ${G.pale} 100%)`,
+                    background: `linear-gradient(120deg, ${G.deep} 0%, ${G.fresh} 50%, ${G.gold} 100%)`,
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",
@@ -176,26 +160,26 @@ export default function CSRClient() {
               <motion.div
                 variants={fadeUp}
                 className="mb-8"
-                style={{ height: "2px", background: `linear-gradient(90deg, ${G.mid}, transparent)`, maxWidth: "320px" }}
+                style={{ height: "3px", background: `linear-gradient(90deg, ${G.fresh}, transparent)`, maxWidth: "240px", borderRadius: "99px" }}
               />
 
               <motion.p
                 variants={fadeUp}
-                className="text-lg text-white/60 leading-[1.8] mb-10 max-w-lg"
+                className="text-base text-stone-600 leading-[1.75] mb-8 max-w-lg"
               >
                 NexeraTech Solutions partners with{" "}
-                <span className="font-semibold" style={{ color: G.light }}>IShara Foundation</span>{" "}
+                <span className="font-semibold text-emerald-800">IShara Foundation</span>{" "}
                 to advance digital inclusion, education, and community development across India — because social impact is one of our core values.
               </motion.p>
 
               {/* CTA buttons */}
-              <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 mb-12">
+              <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 mb-10">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-bold text-sm transition-all duration-300 hover:brightness-110"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-bold text-sm transition-all duration-300 hover:brightness-110 shadow-lg hover:shadow-xl"
                   style={{
-                    background: `linear-gradient(135deg, ${G.mid} 0%, ${G.fresh} 100%)`,
-                    boxShadow: `0 8px 32px rgba(61,122,53,0.50)`,
+                    background: `linear-gradient(135deg, ${G.deep} 0%, ${G.fresh} 100%)`,
+                    boxShadow: `0 8px 24px rgba(45,90,39,0.25)`,
                   }}
                 >
                   Get Involved <ArrowRight className="w-4 h-4" />
@@ -204,10 +188,10 @@ export default function CSRClient() {
                   href="#about-ishara"
                   className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-sm transition-all duration-300"
                   style={{
-                    border: "1.5px solid rgba(125,196,110,0.35)",
-                    color: G.light,
+                    border: `1.5px solid ${G.deep}`,
+                    color: G.deep,
                   }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(125,196,110,0.10)"; }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(45,90,39,0.04)"; }}
                   onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
                 >
                   Learn More
@@ -222,8 +206,8 @@ export default function CSRClient() {
                   { icon: Globe, text: "Digital Inclusion Focus" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-2">
-                    <item.icon className="w-4 h-4" style={{ color: G.light }} />
-                    <span className="text-sm font-medium" style={{ color: "rgba(255,255,255,0.55)" }}>{item.text}</span>
+                    <item.icon className="w-4 h-4 text-emerald-700" />
+                    <span className="text-sm font-semibold text-stone-500">{item.text}</span>
                   </div>
                 ))}
               </motion.div>
@@ -231,186 +215,92 @@ export default function CSRClient() {
 
             {/* ── RIGHT COLUMN ───────────────────────────────────────────── */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-              className="relative hidden lg:block"
+              className="relative mt-12 lg:mt-0"
             >
-              {/* Main card */}
-              <div
-                className="relative rounded-[2rem] overflow-hidden"
-                style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.10)",
-                  backdropFilter: "blur(20px)",
-                  boxShadow: "0 40px 100px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06)",
-                }}
-              >
-                {/* Logo display area */}
+              {/* Image Frame with shadow and rounded corners */}
+              <div className="relative max-w-[560px] mx-auto lg:mr-0">
+                {/* Visual shadow container */}
+                <div className="absolute -inset-2 bg-gradient-to-tr from-emerald-800/10 to-yellow-500/5 rounded-[2.5rem] blur-xl -z-10" />
+
+                {/* Main image container */}
+                <div className="relative rounded-[2rem] overflow-hidden border-8 border-white shadow-2xl">
+                  <Image
+                    src="/IShara-Foundation/landing-page.webp"
+                    alt="IShara Foundation Support for Poor"
+                    width={560}
+                    height={480}
+                    className="w-full h-[460px] object-cover transition-transform duration-700 hover:scale-105"
+                    priority
+                  />
+                  {/* Warm gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent pointer-events-none" />
+                  
+                  {/* Text overlay on image bottom-right */}
+                  <div className="absolute bottom-6 right-6 text-white text-right z-10">
+                    <p className="text-xs uppercase tracking-widest font-semibold opacity-75">Grassroots Support</p>
+                    <h4 className="text-lg font-bold">Empowering Communities</h4>
+                  </div>
+                </div>
+
+                {/* Overlapping Foundation Logo Card */}
                 <div
-                  className="px-10 pt-10 pb-8 flex flex-col items-center"
-                  style={{ background: "rgba(255,255,255,0.02)" }}
-                >
-                  {/* Logo container */}
-                  <motion.div
-                    animate={{ y: [0, -6, 0] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                    className="relative"
-                  >
-                    <div
-                      className="relative rounded-2xl px-8 py-5"
-                      style={{
-                        background: "rgba(255,255,255,0.97)",
-                        boxShadow: `0 20px 60px rgba(0,0,0,0.35), 0 0 0 1px ${G.light}20`,
-                      }}
-                    >
-                      <Image
-                        src="/IShara-Foundation/ISHARA_ FOUNDATION_LOGO.webp"
-                        alt="IShara Foundation Logo"
-                        width={280}
-                        height={88}
-                        className="object-contain"
-                        priority
-                      />
-                    </div>
-                    {/* Glow behind logo */}
-                    <div
-                      className="absolute inset-0 rounded-2xl -z-10 blur-3xl scale-110"
-                      style={{ background: G.light, opacity: 0.18 }}
-                    />
-                  </motion.div>
-
-                  <h3 className="text-xl font-bold text-white mt-6 mb-1">IShara Foundation</h3>
-                  <p className="text-sm font-semibold" style={{ color: G.light }}>NexeraTech&apos;s CSR Partner</p>
-                </div>
-
-                {/* Divider */}
-                <div style={{ height: "1px", background: "rgba(255,255,255,0.07)" }} />
-
-                {/* Stats grid */}
-                <div className="grid grid-cols-3 divide-x" style={{ borderColor: "rgba(255,255,255,0.07)" }}>
-                  {[
-                    { icon: "🌱", value: "Social", label: "Core Value" },
-                    { icon: "💻", value: "Digital", label: "Inclusion" },
-                    { icon: "🤝", value: "Long-term", label: "Partnership" },
-                  ].map((s, i) => (
-                    <div
-                      key={i}
-                      className="py-5 px-4 text-center"
-                      style={{ borderColor: "rgba(255,255,255,0.07)" }}
-                    >
-                      <span className="text-2xl block mb-1">{s.icon}</span>
-                      <p className="text-xs font-bold text-white leading-none">{s.value}</p>
-                      <p className="text-[10px] mt-1" style={{ color: "rgba(255,255,255,0.40)" }}>{s.label}</p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Focus tags */}
-                <div className="px-8 py-6 flex flex-wrap gap-2 justify-center">
-                  {["Digital Inclusion", "Education", "Community Dev", "Tech Skills", "Volunteering"].map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1.5 rounded-full text-xs font-semibold"
-                      style={{ background: "rgba(125,196,110,0.12)", color: G.light, border: `1px solid rgba(125,196,110,0.25)` }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Bottom CTA strip */}
-                <div
-                  className="px-8 py-5 flex items-center justify-between"
+                  className="absolute -bottom-6 left-4 sm:-left-6 bg-white rounded-2xl p-5 border border-stone-100 flex flex-col items-center z-20"
                   style={{
-                    background: `linear-gradient(135deg, ${G.deep}80, ${G.mid}60)`,
-                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.12)",
                   }}
                 >
-                  <span className="text-sm font-medium text-white/70">
-                    A commitment to social change
-                  </span>
-                  <span
-                    className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full"
-                    style={{ background: "rgba(125,196,110,0.2)", color: G.light }}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: G.fresh }} />
-                    Active
-                  </span>
+                  <Image
+                    src="/IShara-Foundation/ISHARA_ FOUNDATION_LOGO.webp"
+                    alt="IShara Foundation Logo"
+                    width={140}
+                    height={44}
+                    className="object-contain"
+                  />
+                  <div className="flex items-center gap-1.5 mt-3">
+                    <span className="w-1.5 h-1.5 rounded-full" style={{ background: G.fresh }} />
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500">Official CSR Partner</span>
+                  </div>
+                </div>
+
+                {/* Overlapping Active Stats Badge */}
+                <div
+                  className="absolute -top-6 right-4 sm:-right-6 bg-white rounded-2xl p-4 border border-stone-100 flex items-center gap-3 z-20"
+                  style={{
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+                  }}
+                >
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center bg-emerald-50 text-emerald-800 text-lg">
+                    🌱
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-stone-400 leading-none">Lives Impacted</p>
+                    <p className="text-sm font-bold text-stone-800 mt-1">10,000+ and growing</p>
+                  </div>
                 </div>
               </div>
-
-              {/* Floating badge top-right */}
-              <motion.div
-                animate={{ y: [0, -5, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -top-5 -right-5 rounded-2xl px-4 py-3 flex items-center gap-2.5"
-                style={{
-                  background: "rgba(11,31,11,0.85)",
-                  border: `1px solid ${G.light}40`,
-                  backdropFilter: "blur(12px)",
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
-                }}
-              >
-                <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: `${G.fresh}22` }}>
-                  <Star className="w-4 h-4" style={{ color: G.gold }} />
-                </div>
-                <div>
-                  <p className="text-white text-xs font-bold leading-none">CSR Certified</p>
-                  <p className="text-[10px] mt-0.5 font-medium" style={{ color: G.light }}>IShara Foundation</p>
-                </div>
-              </motion.div>
-
-              {/* Floating badge bottom-left */}
-              <motion.div
-                animate={{ y: [0, 5, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute -bottom-5 -left-5 rounded-2xl px-4 py-3 flex items-center gap-2.5"
-                style={{
-                  background: "rgba(11,31,11,0.85)",
-                  border: `1px solid ${G.light}30`,
-                  backdropFilter: "blur(12px)",
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
-                }}
-              >
-                <span className="text-2xl">🌱</span>
-                <div>
-                  <p className="text-white text-xs font-bold leading-none">Social Impact</p>
-                  <p className="text-[10px] mt-0.5" style={{ color: G.light }}>Core Company Value</p>
-                </div>
-              </motion.div>
-
-              {/* Ambient glow */}
-              <div
-                className="absolute -inset-8 rounded-[3rem] -z-10"
-                style={{ background: `${G.fresh}08`, filter: "blur(40px)" }}
-              />
             </motion.div>
 
           </div>
         </motion.div>
-
-        {/* Bottom fade */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-10"
-          style={{ background: `linear-gradient(to bottom, transparent, ${G.cream})` }}
-        />
 
         {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.6, duration: 0.6 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
         >
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.25)" }}>Scroll</span>
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(26,58,26,0.4)" }}>Scroll</span>
           <motion.div
             animate={{ y: [0, 7, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             className="h-8 w-5 rounded-full flex items-start justify-center pt-1.5"
-            style={{ border: `1px solid rgba(125,196,110,0.25)` }}
+            style={{ border: `1px solid rgba(26,58,26,0.15)` }}
           >
-            <div className="h-1.5 w-1.5 rounded-full" style={{ background: G.light, opacity: 0.5 }} />
+            <div className="h-1.5 w-1.5 rounded-full" style={{ background: G.deep, opacity: 0.5 }} />
           </motion.div>
         </motion.div>
       </section>
@@ -588,22 +478,42 @@ export default function CSRClient() {
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {[
-              { icon: Globe,    title: "Digital Inclusion",      desc: "Making technology and internet access available to underserved communities across India." },
-              { icon: BookOpen, title: "Education & Literacy",   desc: "Digital literacy programs, computer skills training, and educational resources for youth." },
-              { icon: Users,    title: "Skills & Employment",    desc: "Technology skills training and career development programs to enable economic mobility." },
-              { icon: Sprout,   title: "Community Development",  desc: "Using technology infrastructure to support community services and development projects." },
+              { 
+                icon: Globe, 
+                title: "Digital Inclusion", 
+                desc: "Making technology and internet access available to underserved communities across India.",
+                image: "/IShara-Foundation/What-We-Support/Digital-Inclusion.webp"
+              },
+              { 
+                icon: BookOpen, 
+                title: "Education & Literacy", 
+                desc: "Digital literacy programs, computer skills training, and educational resources for youth.",
+                image: "/IShara-Foundation/What-We-Support/Education-Literacy.webp"
+              },
+              { 
+                icon: Users, 
+                title: "Skills & Employment", 
+                desc: "Technology skills training and career development programs to enable economic mobility.",
+                image: "/IShara-Foundation/What-We-Support/Skills-Employment.webp"
+              },
+              { 
+                icon: Sprout, 
+                title: "Community Development", 
+                desc: "Using technology infrastructure to support community services and development projects.",
+                image: "/IShara-Foundation/What-We-Support/Community-Development.webp"
+              },
             ].map((area, i) => (
               <motion.div
                 key={i}
                 variants={fadeUp}
                 whileHover={{ y: -8, transition: { duration: 0.25 } }}
-                className="group bg-white rounded-2xl p-7 border text-center cursor-default transition-shadow"
+                className="group bg-white rounded-2xl overflow-hidden border cursor-default transition-shadow flex flex-col h-full animate-fadeIn"
                 style={{
                   border: `1px solid ${G.pale}`,
                   boxShadow: "0 2px 16px rgba(45,90,39,0.06)",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = `0 16px 48px rgba(45,90,39,0.16)`;
+                  (e.currentTarget as HTMLElement).style.boxShadow = `0 16px 48px rgba(45,90,39,0.12)`;
                   (e.currentTarget as HTMLElement).style.borderColor = `${G.light}80`;
                 }}
                 onMouseLeave={(e) => {
@@ -611,14 +521,35 @@ export default function CSRClient() {
                   (e.currentTarget as HTMLElement).style.borderColor = G.pale;
                 }}
               >
-                <div
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform duration-300"
-                  style={{ background: G.pale }}
-                >
-                  <area.icon className="w-7 h-7" style={{ color: G.deep }} />
+                {/* Card Image */}
+                <div className="relative h-48 w-full overflow-hidden">
+                  <Image
+                    src={area.image}
+                    alt={area.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  {/* Subtle overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent pointer-events-none" />
+                  
+                  {/* Floating Icon Indicator */}
+                  <div 
+                    className="absolute bottom-3 left-3 w-10 h-10 rounded-xl flex items-center justify-center shadow-md backdrop-filter backdrop-blur-md"
+                    style={{ background: "rgba(255, 255, 255, 0.9)" }}
+                  >
+                    <area.icon className="w-5 h-5" style={{ color: G.deep }} />
+                  </div>
                 </div>
-                <h3 className="font-bold text-base mb-3" style={{ color: G.dark }}>{area.title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#6B7280" }}>{area.desc}</p>
+
+                {/* Card Content */}
+                <div className="p-6 flex flex-col flex-grow text-left">
+                  <h3 className="font-bold text-lg mb-2" style={{ color: G.dark }}>
+                    {area.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-stone-600 flex-grow">
+                    {area.desc}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </motion.div>
