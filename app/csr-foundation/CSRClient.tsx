@@ -65,7 +65,7 @@ export default function CSRClient() {
       <section
         ref={heroRef}
         className="relative min-h-screen flex items-center overflow-hidden py-24 sm:py-32"
-        style={{ background: `linear-gradient(180deg, #F4F9F2 0%, #FFFFFF 100%)` }}
+        style={{ background: `linear-gradient(165deg, #0A1F0A 0%, ${G.dark} 40%, ${G.deep} 80%, #153615 100%)` }}
       >
         {/* Parallax background patterns and glows */}
         <motion.div
@@ -75,27 +75,27 @@ export default function CSRClient() {
           {/* Natural organic radial glows */}
           <div
             className="absolute top-0 right-0 w-[800px] h-[800px] rounded-full"
-            style={{ background: `radial-gradient(circle, ${G.pale}60 0%, transparent 70%)` }}
+            style={{ background: `radial-gradient(circle, ${G.light}20 0%, transparent 65%)` }}
           />
           <div
             className="absolute -bottom-20 -left-20 w-[600px] h-[600px] rounded-full"
-            style={{ background: `radial-gradient(circle, ${G.pale}40 0%, transparent 70%)` }}
+            style={{ background: `radial-gradient(circle, ${G.mid}15 0%, transparent 65%)` }}
           />
 
           {/* Subtle dot grid */}
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `radial-gradient(circle, rgba(78,153,68,0.06) 1.5px, transparent 1.5px)`,
+              backgroundImage: `radial-gradient(circle, rgba(125,196,110,0.12) 1.5px, transparent 1.5px)`,
               backgroundSize: "32px 32px",
             }}
           />
 
           {/* Clean decorative organic line overlays */}
-          <svg className="absolute right-[-40px] top-[-40px] w-[500px] h-[500px] opacity-[0.15]" viewBox="0 0 500 500" fill="none">
-            <circle cx="250" cy="250" r="220" stroke={G.deep} strokeWidth="1" strokeDasharray="8 12" />
-            <circle cx="250" cy="250" r="170" stroke={G.deep} strokeWidth="0.6" strokeDasharray="4 8" />
-            <circle cx="250" cy="250" r="120" stroke={G.deep} strokeWidth="0.4" />
+          <svg className="absolute right-[-40px] top-[-40px] w-[500px] h-[500px] opacity-[0.08]" viewBox="0 0 500 500" fill="none">
+            <circle cx="250" cy="250" r="220" stroke={G.light} strokeWidth="1" strokeDasharray="8 12" />
+            <circle cx="250" cy="250" r="170" stroke={G.light} strokeWidth="0.6" strokeDasharray="4 8" />
+            <circle cx="250" cy="250" r="120" stroke={G.light} strokeWidth="0.4" />
           </svg>
         </motion.div>
 
@@ -110,9 +110,9 @@ export default function CSRClient() {
             <motion.div initial="hidden" animate="visible" variants={stagger}>
               {/* Breadcrumb */}
               <motion.div variants={fadeUp} className="flex items-center gap-2 mb-8 text-sm">
-                <Link href="/" className="text-stone-400 hover:text-emerald-800 transition-colors">Home</Link>
-                <span className="text-stone-300">/</span>
-                <span className="font-semibold text-emerald-800">IShara Foundation</span>
+                <Link href="/" className="text-white/35 hover:text-white transition-colors">Home</Link>
+                <span className="text-white/20">/</span>
+                <span className="font-medium" style={{ color: G.light }}>IShara Foundation</span>
               </motion.div>
 
               {/* Eyebrow pill */}
@@ -120,9 +120,9 @@ export default function CSRClient() {
                 variants={fadeUp}
                 className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-xs font-bold uppercase tracking-[0.15em] mb-6"
                 style={{
-                  background: "rgba(45,90,39,0.06)",
-                  border: "1px solid rgba(45,90,39,0.15)",
-                  color: G.deep,
+                  background: "rgba(125,196,110,0.12)",
+                  border: "1px solid rgba(125,196,110,0.35)",
+                  color: G.light,
                   backdropFilter: "blur(8px)",
                 }}
               >
@@ -136,14 +136,14 @@ export default function CSRClient() {
               {/* Heading */}
               <motion.h1
                 variants={fadeUp}
-                className="text-5xl sm:text-6xl lg:text-7xl font-black text-stone-900 leading-[1.08] tracking-tight mb-6"
+                className="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1.08] tracking-tight mb-6"
               >
                 Technology{" "}
                 <br />
                 for{" "}
                 <span
                   style={{
-                    background: `linear-gradient(120deg, ${G.deep} 0%, ${G.fresh} 50%, ${G.gold} 100%)`,
+                    background: `linear-gradient(120deg, ${G.light} 0%, #B8E8A0 40%, ${G.pale} 100%)`,
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",
@@ -160,15 +160,15 @@ export default function CSRClient() {
               <motion.div
                 variants={fadeUp}
                 className="mb-8"
-                style={{ height: "3px", background: `linear-gradient(90deg, ${G.fresh}, transparent)`, maxWidth: "240px", borderRadius: "99px" }}
+                style={{ height: "3px", background: `linear-gradient(90deg, ${G.light}, transparent)`, maxWidth: "240px", borderRadius: "99px" }}
               />
 
               <motion.p
                 variants={fadeUp}
-                className="text-base text-stone-600 leading-[1.75] mb-8 max-w-lg"
+                className="text-base text-white/70 leading-[1.75] mb-8 max-w-lg"
               >
                 NexeraTech Solutions partners with{" "}
-                <span className="font-semibold text-emerald-800">IShara Foundation</span>{" "}
+                <span className="font-semibold text-emerald-300">IShara Foundation</span>{" "}
                 to advance digital inclusion, education, and community development across India — because social impact is one of our core values.
               </motion.p>
 
@@ -188,10 +188,10 @@ export default function CSRClient() {
                   href="#about-ishara"
                   className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-sm transition-all duration-300"
                   style={{
-                    border: `1.5px solid ${G.deep}`,
-                    color: G.deep,
+                    border: "1.5px solid rgba(125,196,110,0.35)",
+                    color: G.light,
                   }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(45,90,39,0.04)"; }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(125,196,110,0.1)"; }}
                   onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
                 >
                   Learn More
@@ -206,8 +206,8 @@ export default function CSRClient() {
                   { icon: Globe, text: "Digital Inclusion Focus" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-2">
-                    <item.icon className="w-4 h-4 text-emerald-700" />
-                    <span className="text-sm font-semibold text-stone-500">{item.text}</span>
+                    <item.icon className="w-4 h-4" style={{ color: G.light }} />
+                    <span className="text-sm font-semibold text-white/60">{item.text}</span>
                   </div>
                 ))}
               </motion.div>
@@ -291,22 +291,26 @@ export default function CSRClient() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.6, duration: 0.6 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
+          className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
         >
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(26,58,26,0.4)" }}>Scroll</span>
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.25)" }}>Scroll</span>
           <motion.div
             animate={{ y: [0, 7, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             className="h-8 w-5 rounded-full flex items-start justify-center pt-1.5"
-            style={{ border: `1px solid rgba(26,58,26,0.15)` }}
+            style={{ border: "1px solid rgba(255,255,255,0.25)" }}
           >
-            <div className="h-1.5 w-1.5 rounded-full" style={{ background: G.deep, opacity: 0.5 }} />
+            <div className="h-1.5 w-1.5 rounded-full" style={{ background: G.light, opacity: 0.5 }} />
           </motion.div>
         </motion.div>
       </section>
 
       {/* ══════════════════════ STAT STRIP ══════════════════════════════════ */}
-      <section id="about-ishara" style={{ background: G.cream }} className="py-16 relative z-10">
+      <section 
+        id="about-ishara" 
+        style={{ background: G.cream }} 
+        className="py-20 relative z-20 rounded-t-[3.5rem] -mt-14 shadow-[0_-24px_60px_rgba(10,31,10,0.18)]"
+      >
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
             className="grid grid-cols-1 sm:grid-cols-3 gap-0 divide-y sm:divide-y-0 sm:divide-x"
