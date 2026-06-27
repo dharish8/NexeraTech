@@ -1249,7 +1249,9 @@ export default function HomePage() {
 
               <motion.div variants={fadeUp}>
                 <Link
-                  href="/csr-foundation"
+                  href="https://i-shara-foundation.vercel.app/csr-foundation"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="glow-btn"
                   style={{
                     background: "linear-gradient(135deg, #2D5A27 0%, #4E9944 60%, #2D5A27 100%)",

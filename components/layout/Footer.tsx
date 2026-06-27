@@ -161,10 +161,14 @@ export default function Footer() {
                   { label: "Testimonials", href: "/testimonials" },
                   { label: "Blog", href: "/blog" },
                   { label: "Contact", href: "/contact" },
-                  { label: "CSR Foundation", href: "/csr-foundation" },
+                  { label: "CSR Foundation", href: "https://i-shara-foundation.vercel.app/csr-foundation" },
                 ].map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className="text-sm text-white/40 hover:text-[#E85D04] transition-colors">
+                    <Link
+                      href={link.href}
+                      className="text-sm text-white/40 hover:text-[#E85D04] transition-colors"
+                      {...(link.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    >
                       {link.label}
                     </Link>
                   </li>
@@ -227,7 +231,12 @@ export default function Footer() {
                     </a>
                   ))}
                 </div>
-                <Link href="/csr-foundation" className="text-xs text-[#E85D04] hover:text-[#FF802B] mt-2 block transition-colors font-semibold">
+                <Link
+                  href="https://i-shara-foundation.vercel.app/csr-foundation"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-[#E85D04] hover:text-[#FF802B] mt-2 block transition-colors font-semibold"
+                >
                   Learn more →
                 </Link>
               </div>
