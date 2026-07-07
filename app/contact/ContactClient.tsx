@@ -137,8 +137,8 @@ export default function ContactClient() {
                   <div className="space-y-5">
                     {[
                       { icon: MapPin, label: "Headquarters", value: "Hyderabad, Telangana, India", sub: "EST · GMT · IST coverage" },
-                      { icon: Mail, label: "Email", value: "info@nexeratechsolutions.com", href: "mailto:info@nexeratechsolutions.com" },
-                      { icon: Phone, label: "Phone", value: "+91 40 XXXX XXXX", sub: "Mon–Fri 9am–6pm IST" },
+                      { icon: Mail, label: "Email", value: "info@nexeratechinc.com", href: "mailto:info@nexeratechinc.com" },
+                      { icon: Phone, label: "Phone", value: "+91 970 186 7111", sub: "Mon–Fri 9am–6pm IST" },
                       { icon: Clock, label: "SLA Response", value: "Within 1 business day", sub: "For all B2B inquiries" },
                     ].map((item, i) => (
                       <div key={i} className="flex items-start gap-4">

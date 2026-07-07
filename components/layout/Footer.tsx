@@ -87,17 +87,17 @@ export default function Footer() {
               <div className="flex flex-col gap-3 text-sm text-white/40">
                 <div className="flex items-start gap-2.5">
                   <MapPin className="w-4 h-4 text-[#E85D04] flex-shrink-0 mt-0.5" />
-                  <span>Hyderabad, Telangana, India — Est. 2024</span>
+                  <span>B2, Touch River Classic, Street no 5, Czech colony, Sanath Nagar, Hyderabad Telangana India - 500018 Est. 2024</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Mail className="w-4 h-4 text-[#E85D04] flex-shrink-0" />
-                  <a href="mailto:info@nexeratechsolutions.com" className="hover:text-[#E85D04] transition-colors">
-                    info@nexeratechsolutions.com
+                  <a href="mailto:hr@nexeratechinc.com" className="hover:text-[#E85D04] transition-colors">
+                    hr@nexeratechinc.com
                   </a>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Phone className="w-4 h-4 text-[#E85D04] flex-shrink-0" />
-                  <span>+91 40 XXXX XXXX</span>
+                  <span>+91 970 186 7111</span>
                 </div>
               </div>
               {/* Social Icons */}
