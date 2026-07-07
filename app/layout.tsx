@@ -63,8 +63,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${plusJakarta.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-white text-[#0F1117]">
+    <html lang="en" className={`${inter.variable} ${plusJakarta.variable} h-full antialiased`} suppressHydrationWarning>
+      <body className="min-h-full flex flex-col bg-white text-[#0F1117]" suppressHydrationWarning>
         <Navbar />
         <main className="flex-1">{children}</main>
         <FinalCTAWrapper />
