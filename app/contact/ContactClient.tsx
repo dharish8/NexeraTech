@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
-import { Mail, MapPin, Phone, Clock, ArrowRight, CheckCircle, Linkedin, Twitter, Facebook, Globe, Shield } from "lucide-react";
+import { useState, useRef } from "react";
+import emailjs from '@emailjs/browser';
+import { Mail, MapPin, Phone, Clock, ArrowRight, CheckCircle, Linkedin, Twitter, Facebook, Globe, Shield, Loader2 } from "lucide-react";
 
 const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } } };
 const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
@@ -28,12 +29,46 @@ const services = [
 
 export default function ContactClient() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState({ name: "", email: "", company: "", service: "", message: "" });
   const [focused, setFocused] = useState<string | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      // NOTE: Replace these with your actual EmailJS credentials
+      // It is recommended to use environment variables for these (e.g., process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID)
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID";
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID";
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY";
+
+      const templateParams = {
+        from_name: form.name,
+        from_email: form.email,
+        company: form.company || "Not provided",
+        service: form.service,
+        message: form.message,
+      };
+
+      await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      );
+
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Failed to send email:", err);
+      setError("Failed to send your message. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const inputClass = (field: string) =>
@@ -225,7 +260,12 @@ export default function ContactClient() {
                     <p className="text-gray-500 text-sm">Fill out the details and our architect will get back to you with an execution plan.</p>
                   </div>
 
-                  <form onSubmit={handleSubmit} className="space-y-5" id="contact-form">
+                  <form ref={formRef} onSubmit={handleSubmit} className="space-y-5" id="contact-form">
+                    {error && (
+                      <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm">
+                        {error}
+                      </div>
+                    )}
                     <div className="grid md:grid-cols-2 gap-5">
                       <div>
                         <label htmlFor="contact-name" className="premium-label">Full Name *</label>
@@ -301,9 +341,19 @@ export default function ContactClient() {
                     <button
                       type="submit"
                       id="contact-submit"
-                      className="w-full glow-btn py-4 text-sm uppercase tracking-wider"
+                      disabled={isSubmitting}
+                      className="w-full glow-btn py-4 text-sm uppercase tracking-wider flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                     >
-                      Request a Proposal <ArrowRight className="w-5 h-5" />
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          Request a Proposal <ArrowRight className="w-5 h-5" />
+                        </>
+                      )}
                     </button>
                     <div className="flex items-center justify-center gap-2 pt-1">
                       <Shield className="w-3.5 h-3.5 text-gray-400" />
